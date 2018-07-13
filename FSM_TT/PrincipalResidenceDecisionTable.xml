@@ -1,0 +1,78 @@
+<?xml version="1.0" ?>
+<TopicDecisionTable category="REQUIRED" isMultiCopy="false" isTopLevel="true" xmlns="http://ctg.intuit.com/tla/decisions">
+	<TopicName>PrincipalResidence</TopicName>
+	<Path>/Return/ReturnData</Path>
+	<Header>
+		<Cell index="0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ExpressionColumn">
+			<Nodes>
+				<Node>3</Node>
+			</Nodes>
+			<Expression/>
+			<XPathReferences/>
+		</Cell>
+		<Cell index="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ExpressionColumn">
+			<Nodes>
+				<Node>3</Node>
+			</Nodes>
+			<Expression/>
+			<XPathReferences/>
+		</Cell>
+		<Cell index="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ExpressionColumn">
+			<Nodes>
+				<Node>3</Node>
+			</Nodes>
+			<Expression/>
+			<XPathReferences/>
+		</Cell>
+		<Cell index="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ExpressionColumn">
+			<Nodes>
+				<Node>3</Node>
+			</Nodes>
+			<Expression/>
+			<XPathReferences/>
+		</Cell>
+		<Cell index="4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ExpressionColumn">
+			<Nodes>
+				<Node>3</Node>
+			</Nodes>
+			<Expression/>
+			<XPathReferences/>
+		</Cell>
+		<Cell index="5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ExpressionColumn">
+			<Nodes>
+				<Node>3</Node>
+			</Nodes>
+			<Expression/>
+			<XPathReferences/>
+		</Cell>
+		<Cell index="6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ExpressionColumn">
+			<Nodes>
+				<Node>3</Node>
+			</Nodes>
+			<Expression/>
+			<XPathReferences/>
+		</Cell>
+	</Header>
+	<Rows count="0" index="0">
+		<ValueCell>
+			<Cell index="1" value="true"/>
+			<Cell index="2" value="true"/>
+			<Cell index="3" value="true"/>
+		</ValueCell>
+		<ValueCell>
+			<Cell index="1" value="true"/>
+			<Cell index="2" value="false"/>
+			<Cell index="4" value="true"/>
+		</ValueCell>
+		<ValueCell>
+			<Cell index="1" value="false"/>
+			<Cell index="5" value="true"/>
+			<Cell index="6" value="true"/>
+		</ValueCell>
+		<ValueCell>
+			<Cell index="1" value="false"/>
+			<Cell index="5" value="false"/>
+			<Cell index="7" value="true"/>
+		</ValueCell>
+	</Rows>
+</TopicDecisionTable>
