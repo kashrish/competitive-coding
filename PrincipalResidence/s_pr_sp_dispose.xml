@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE Step  SYSTEM "http://qtdev.ca.intuit.com/dtd/Step.dtd">
+<Step id="s_pr_sp_dispose" entry_calc="tds.taxp_pr_instance.set(0)" restore_redirect_calc="nextStep = &quot;step|s_rental_yn&quot;&#10;if tax.is_module(tax.Module.Basic) or tax.is_module(tax.Module.FormsOnly):&#10;	nextStep = &apos;step|s_alimony_income&apos;&#10;else:&#10;	nextStep = &quot;step|s_rental_yn&quot;&#10;&#10;try:&#10;	prevStep = step.prevStep.get()&#10;except:&#10;	if (tds.TAXP_DISPOSE_PROP.val() == 1 and tds.SP_DISPOSE_PROP.val() == 0) or (tds.TAXP_DISPOSE_PROP.val() == 0 and tds.SP_DISPOSE_PROP.val() == 1):&#10;		return &quot;step|s_taxp_pr_redirect&quot;&#10;	elif tds.TAXP_DISPOSE_PROP.val()==0 and tds.SP_DISPOSE_PROP.val()==0:&#10;		return nextStep"
+ redirect_calc="nextStep = &quot;step|s_rental_yn&quot;&#10;if tax.is_module(tax.Module.Basic) or tax.is_module(tax.Module.FormsOnly):&#10;	nextStep = &apos;step|s_alimony_income&apos;&#10;else:&#10;	nextStep = &quot;step|s_rental_yn&quot;&#10;&#10;try:&#10;	prevStep = step.prevStep.get()&#10;except:&#10;	if (tds.TAXP_DISPOSE_PROP.val() == 1 and tds.SP_DISPOSE_PROP.val() == 0) or (tds.TAXP_DISPOSE_PROP.val() == 0 and tds.SP_DISPOSE_PROP.val() == 1):&#10;		return &quot;step|s_taxp_pr_redirect&quot;&#10;	elif tds.TAXP_DISPOSE_PROP.val()==0 and tds.SP_DISPOSE_PROP.val()==0:&#10;		return nextStep">
+    
+    <Title id="Te1">
+        <Blurb id="Bb1">
+            Who <Link id="Lk3" target="definition|d_disposition">disposed</Link> of this property?
+        </Blurb>
+    </Title>
+                
+    <GroupLayout id="Gt1">
+        <Row id="Rw5" height="5">
+            <Column id="Cn5"></Column>
+        </Row>
+        <Row id="Rw6">
+            <Column id="Cn6">
+                <Input id="It2">
+                    <RadioButtonsGroup id="pr_dispose" layout="in_same_column">
+                        <RadioButton id="taxpayer">
+                            <InputLabel id="Il3" label_on="right">
+                                <Blurb id="Bb7">
+                                    <Substitution id="Sn2" value_calc="return tax.get_taxpayer_name(taxp)"/> owned the home and <Substitution id="Sn4" value_calc="return tax.get_taxpayer_name(sp)"/> did not
+                                </Blurb>
+                            </InputLabel>
+                            <InputField id="Id3" type="radio" value_calc="return tds.PR_DISPOSE_TP.val() == 1"
+                            store_calc="if formlet.has_key(&quot;pr_dispose&quot;):&#10;	if formlet.pr_dispose.str() == &quot;taxpayer&quot;:&#10;		tds.PR_DISPOSE_TP.set(1)&#10;		tds.PR_DISPOSE_SP.set(0)&#10;		tds.PR_DISPOSE_BOTH.set(0)&#10;	elif formlet.pr_dispose.str() == &quot;spouse&quot;:&#10;		tds.PR_DISPOSE_TP.set(0)&#10;		tds.PR_DISPOSE_SP.set(1)&#10;		tds.PR_DISPOSE_BOTH.set(0)&#10;	elif formlet.pr_dispose.str() == &quot;both&quot;:&#10;		tds.PR_DISPOSE_TP.set(0)&#10;		tds.PR_DISPOSE_SP.set(0)&#10;		tds.PR_DISPOSE_BOTH.set(1)&#10;	else:&#10;		tds.PR_DISPOSE_TP.set(0)&#10;		tds.PR_DISPOSE_SP.set(0)&#10;		tds.PR_DISPOSE_BOTH.set(0)&#10;else:&#10;	tds.PR_DISPOSE_TP.set(0)&#10;	tds.PR_DISPOSE_SP.set(0)&#10;	tds.PR_DISPOSE_BOTH.set(1)" 
+                                validate_calc="if formlet.has_key(&quot;pr_dispose&quot;) and formlet.pr_dispose.str()!=&quot;&quot;:&#10;	return 1&#10;else:&#10;	return 0">
+                                <ErrorMessage id="Ee3">Select an option</ErrorMessage>
+                            </InputField>
+                        </RadioButton>
+                        <RadioButton id="spouse">
+                            <InputLabel id="Il4" label_on="right">
+                                <Blurb id="Bb8">
+                                    <Substitution id="Sn3" value_calc="return tax.get_taxpayer_name(sp)"/> owned the home and <Substitution id="Sn5" value_calc="return tax.get_taxpayer_name(taxp)"/> did not
+                                </Blurb>
+                            </InputLabel>
+                            <InputField id="Id4" type="radio" value_calc="return tds.PR_DISPOSE_SP.val() == 1"
+                            store_calc="if formlet.has_key(&quot;pr_dispose&quot;):&#10;	if formlet.pr_dispose.str() == &quot;taxpayer&quot;:&#10;		tds.PR_DISPOSE_TP.set(1)&#10;		tds.PR_DISPOSE_SP.set(0)&#10;		tds.PR_DISPOSE_BOTH.set(0)&#10;	elif formlet.pr_dispose.str() == &quot;spouse&quot;:&#10;		tds.PR_DISPOSE_TP.set(0)&#10;		tds.PR_DISPOSE_SP.set(1)&#10;		tds.PR_DISPOSE_BOTH.set(0)&#10;	elif formlet.pr_dispose.str() == &quot;both&quot;:&#10;		tds.PR_DISPOSE_TP.set(0)&#10;		tds.PR_DISPOSE_SP.set(0)&#10;		tds.PR_DISPOSE_BOTH.set(1)&#10;	else:&#10;		tds.PR_DISPOSE_TP.set(0)&#10;		tds.PR_DISPOSE_SP.set(0)&#10;		tds.PR_DISPOSE_BOTH.set(0)&#10;else:&#10;	tds.PR_DISPOSE_TP.set(0)&#10;	tds.PR_DISPOSE_SP.set(0)&#10;	tds.PR_DISPOSE_BOTH.set(1)"
+                                validate_calc="if formlet.has_key(&quot;pr_dispose&quot;) and formlet.pr_dispose.str()!=&quot;&quot;:&#10;	return 1&#10;else:&#10;	return 0">
+                                <ErrorMessage id="Ee4">Select an option</ErrorMessage>
+                            </InputField>
+                        </RadioButton>
+                        <RadioButton id="both">
+                            <InputLabel id="Il5" label_on="right">
+                                <Blurb id="Bb9">
+                                    Both <Substitution id="Sn6" value_calc="return tax.get_taxpayer_name(taxp)"/> and <Substitution id="Sn7" value_calc="return tax.get_taxpayer_name(sp)"/> co-owned the home
+                                </Blurb>
+                            </InputLabel>
+                            <InputField id="Id5" type="radio" value_calc="return tds.PR_DISPOSE_BOTH.val() == 1"
+                            store_calc="if formlet.has_key(&quot;pr_dispose&quot;):&#10;	if formlet.pr_dispose.str() == &quot;taxpayer&quot;:&#10;		tds.PR_DISPOSE_TP.set(1)&#10;		tds.PR_DISPOSE_SP.set(0)&#10;		tds.PR_DISPOSE_BOTH.set(0)&#10;	elif formlet.pr_dispose.str() == &quot;spouse&quot;:&#10;		tds.PR_DISPOSE_TP.set(0)&#10;		tds.PR_DISPOSE_SP.set(1)&#10;		tds.PR_DISPOSE_BOTH.set(0)&#10;	elif formlet.pr_dispose.str() == &quot;both&quot;:&#10;		tds.PR_DISPOSE_TP.set(0)&#10;		tds.PR_DISPOSE_SP.set(0)&#10;		tds.PR_DISPOSE_BOTH.set(1)&#10;	else:&#10;		tds.PR_DISPOSE_TP.set(0)&#10;		tds.PR_DISPOSE_SP.set(0)&#10;		tds.PR_DISPOSE_BOTH.set(0)&#10;else:&#10;	tds.PR_DISPOSE_TP.set(0)&#10;	tds.PR_DISPOSE_SP.set(0)&#10;	tds.PR_DISPOSE_BOTH.set(1)"
+                                validate_calc="if formlet.has_key(&quot;pr_dispose&quot;) and formlet.pr_dispose.str()!=&quot;&quot;:&#10;	return 1&#10;else:&#10;	return 0">
+                                <ErrorMessage id="Ee5">Select an option</ErrorMessage>
+                            </InputField>
+                        </RadioButton>
+                    </RadioButtonsGroup>
+                </Input>
+            </Column>
+        </Row>
+        <Row id="Rw7" height="20">
+            <Column id="Cn7"></Column>
+        </Row>
+    </GroupLayout>
+    
+    <Button id="Bn1" target="back">
+        <Blurb id="Bb5">Back</Blurb>
+    </Button>
+    
+    <Button id="Bn2" target_calc="if formlet.has_key(&quot;pr_dispose&quot;) and formlet.pr_dispose.str()==&quot;both&quot;:&#10;	tds.SP_DISPOSE.set(1)&#10;	tds.SP_DISPOSE_NO.set(0)&#10;else:&#10;	tds.SP_DISPOSE.set(0)&#10;	tds.SP_DISPOSE_NO.set(1)&#10;&#10;try:&#10;	prevStep = step.prevStep.get()&#10;	if formlet.has_key(&quot;pr_dispose&quot;) and formlet.pr_dispose.str()==&quot;taxpayer&quot;:&#10;		tds.TAXP_ADD_PROP.set(1)&#10;		tds.SP_ADD_PROP.set(0)&#10;	elif formlet.has_key(&quot;pr_dispose&quot;) and formlet.pr_dispose.str()==&quot;spouse&quot;:&#10;		tds.TAXP_ADD_PROP.set(0)&#10;		tds.SP_ADD_PROP.set(1)&#10;	elif formlet.has_key(&quot;pr_dispose&quot;) and formlet.pr_dispose.str()==&quot;both&quot;:&#10;		tds.TAXP_ADD_PROP.set(1)&#10;		tds.SP_ADD_PROP.set(1)&#10;		&#10;	return &quot;step|s_taxp_pr_add_property_redirect&quot;&#10;except:&#10;	if formlet.has_key(&quot;pr_dispose&quot;) and formlet.pr_dispose.str()==&quot;spouse&quot;:&#10;		tds.TAXP_ADD_PROP.set(0)&#10;		tds.SP_ADD_PROP.set(1)&#10;	return &quot;step|s_taxp_pr_redirect&quot;">
+        <Blurb id="Bb6">Continue</Blurb>
+    </Button>
+    
+</Step>

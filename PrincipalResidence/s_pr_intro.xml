@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE Step  SYSTEM "http://qtdev.ca.intuit.com/dtd/Step.dtd">
+<Step id="s_pr_intro" nav_stack_id="n_pr_intro" entry_calc="tds.taxp_pr_instance.set(0)&#10;tds.SP_DISPOSE.set(0)&#10;tds.SP_DISPOSE_NO.set(0)&#10;tds.PR_DISPOSE_TP.set(0)&#10;tds.PR_DISPOSE_SP.set(0)&#10;tds.PR_DISPOSE_BOTH.set(0)" 
+exit_calc="if tds.TAXP_DISPOSE_PROP.val() == 1:&#10;	tds.TAXP_HOME_DISPOSE_QUESTION_YES.set(1)&#10;	tds.TAXP_HOME_DISPOSE_QUESTION_NO.set(0)&#10;	tds.TAXP_ADD_PROP.set(1)&#10;elif tds.TAXP_DISPOSE_PROP.val() == 0:&#10;	tds.TAXP_HOME_DISPOSE_QUESTION_YES.set(0)&#10;	tds.TAXP_HOME_DISPOSE_QUESTION_NO.set(1)&#10;	tds.TAXP_ADD_PROP.set(0)&#10;&#10;if is_dual() and tds.SP_DISPOSE_PROP.val() == 1:&#10;	tds.SP_HOME_DISPOSE_QUESTION_YES.set(1)&#10;	tds.SP_HOME_DISPOSE_QUESTION_NO.set(0)&#10;	tds.SP_ADD_PROP.set(1)&#10;elif is_dual() and tds.SP_DISPOSE_PROP.val() == 0:&#10;	tds.SP_HOME_DISPOSE_QUESTION_YES.set(0)&#10;	tds.SP_HOME_DISPOSE_QUESTION_NO.set(1)&#10;	tds.SP_ADD_PROP.set(0)">
+    
+    <Navigator id="Nr1">
+        <Topic id="Tc1">
+            <Link id="s_pr_intro-0">
+                Principal residence
+            </Link>
+        </Topic>
+        <Index id="Ix1">
+            <Link id="s_pr_intro-1">
+                Principal residence
+            </Link>
+        </Index>
+    </Navigator>
+                    
+    <Title id="Te1">
+        <Blurb id="Bb1">
+            Sale of your Principal Residence
+        </Blurb>
+    </Title>
+    
+    <GroupLayout id="Gt1">
+        <Row id="Rw1" height="5">
+            <Column id="Cn1"></Column>
+        </Row>
+        <Row id="Rw2">
+            <Column id="Cn2">
+                <Note id="Ne1">
+                    <Blurb id="Bb2">
+                        Starting with the 2016 tax year, a sale of a home property that took place during the year needs to be 
+                        reported on your income tax return. This includes the following scenarios:
+                    </Blurb>
+                </Note>
+            </Column>
+        </Row>
+        <Row id="Rw3" height="20">
+            <Column id="Cn3"></Column>
+        </Row>
+        <Row id="Rw4">
+            <Column id="Cn4">
+                <Note id="Ne2">
+                    <Blurb id="Bb3">
+                        i) You sold your <Strong id="Sg1"><Link id="Lk3" target="definition|d_princ_res_desig">principal residence</Link></Strong>
+                    </Blurb>
+                </Note>
+            </Column>
+        </Row>
+        <Row id="Rw5">
+            <Column id="Cn5">
+                <Note id="Ne3">
+                    <Blurb id="Bb4">
+                        ii) You changed all or part of your property to be used in a business or as a rental
+                    </Blurb>
+                </Note>
+            </Column>
+        </Row>
+        <Row id="Rw6">
+            <Column id="Cn6">
+                <Note id="Ne4">
+                    <Blurb id="Bb5">
+                        iii) You changed the ownership of your principal residence
+                    </Blurb>
+                </Note>
+            </Column>
+        </Row>
+        <Row id="Rw7" height="20">
+            <Column id="Cn7"></Column>
+        </Row>
+        <Row id="Rw8">
+            <Column id="Cn8">
+                <Note id="Ne5">
+                    <Blurb id="Bb6">
+                        If you weren't resident in Canada for the entire time you owned the property, you may not be eligible 
+                        for the entire principal residence tax exemption.
+                    </Blurb>
+                </Note>
+            </Column>
+        </Row>
+        <Row id="Rw9" height="30">
+            <Column id="Cn9"></Column>
+        </Row>
+    </GroupLayout>
+    
+    <GroupLayout id="Gt2">
+        <Row id="Rw10">
+            <Column id="Cn10">
+                <Note id="Ne6">
+                    <Blurb id="Bb7">
+                        <Strong id="Sg3"><Substitution id="Sn1" value_calc="return tax.get_taxpayer_name(taxp)"/></Strong>
+                    </Blurb>
+                </Note>
+            </Column>
+            <Column id="Cn11" visible_calc="return is_dual()" width="30"></Column>
+            <Column id="Cn12" visible_calc="return is_dual()">
+                <Note id="Ne7">
+                    <Blurb id="Bb8">
+                        <Strong id="Sg4"><Substitution id="Sn2" value_calc="return tax.get_taxpayer_name(sp)"/></Strong>
+                    </Blurb>
+                </Note>
+            </Column>
+            <Column id="Cn13" col_span="2"></Column>
+        </Row>
+        <Row id="Rw11" height="5">
+            <Column id="Cn14" col_span="5" visible_calc="return is_dual()"></Column>
+            <Column id="Cn15" col_span="3" visible_calc="return not is_dual()"></Column>
+        </Row>
+        <Row id="pr_yesno">
+            <Column id="Cn16">
+                <Input id="It1">
+                    <InputField default_mapping="tds.TAXP_DISPOSE_PROP"
+                        id="TAXP_DISPOSE_PROP" type="checkbox" value_calc="addr1 = &quot;&quot;&#10;addr2 = &quot;&quot;&#10;addr3 = &quot;&quot;&#10;&#10;if taxp.PRWS_APT1.str() != &quot;&quot;:&#10;	addr1 = addr1 + taxp.PRWS_APT1.str()&#10;if taxp.PRWS_NUM1.str() != &quot;&quot;:&#10;	addr1 = addr1 + &quot;-&quot; + taxp.PRWS_NUM1.str()&#10;if taxp.PRWS_ADDR1.str() != &quot;&quot;:&#10;	addr1 = addr1 + &quot; &quot; + taxp.PRWS_ADDR1.str()&#10;if taxp.PRWS_LOT1.str() != &quot;&quot;:&#10;	addr1 = addr1 + &quot; &quot; + taxp.PRWS_LOT1.str()&#10;&#10;if taxp.PRWS_APT2.str() != &quot;&quot;:&#10;	addr2 = addr2 + taxp.PRWS_APT2.str()&#10;if taxp.PRWS_NUM2.str() != &quot;&quot;:&#10;	addr2 = addr2 + &quot;-&quot; + taxp.PRWS_NUM2.str()&#10;if taxp.PRWS_ADDR2.str() != &quot;&quot;:&#10;	addr2 = addr2 + &quot; &quot; + taxp.PRWS_ADDR2.str()&#10;if taxp.PRWS_LOT2.str() != &quot;&quot;:&#10;	addr2 = addr2 + &quot; &quot; + taxp.PRWS_LOT2.str()&#10;&#10;if taxp.PRWS_APT3.str() != &quot;&quot;:&#10;	addr3 = addr3 + taxp.PRWS_APT3.str()&#10;if taxp.PRWS_NUM3.str() != &quot;&quot;:&#10;	addr3 = addr3 + &quot;-&quot; + taxp.PRWS_NUM3.str()&#10;if taxp.PRWS_ADDR3.str() != &quot;&quot;:&#10;	addr3 = addr3 + &quot; &quot; + taxp.PRWS_ADDR3.str()&#10;if taxp.PRWS_LOT3.str() != &quot;&quot;:&#10;	addr3 = addr3 + &quot; &quot; + taxp.PRWS_LOT3.str()&#10;&#10;if addr1 != &quot;&quot; or addr2 != &quot;&quot; or addr3 != &quot;&quot;:&#10;	return 1&#10;else:&#10;	return tds.TAXP_DISPOSE_PROP.val()"/>
+                </Input>
+            </Column>
+            <Column id="Cn17" visible_calc="return is_dual()" width="30"></Column>
+            <Column id="Cn18" visible_calc="return is_dual()">
+                <Input id="It2">
+                    <InputField id="SP_DISPOSE_PROP" type="checkbox" default_mapping="tds.SP_DISPOSE_PROP"
+                        value_calc="addr1 = &quot;&quot;&#10;addr2 = &quot;&quot;&#10;addr3 = &quot;&quot;&#10;&#10;if sp.PRWS_APT1.str() != &quot;&quot;:&#10;	addr1 = addr1 + sp.PRWS_APT1.str()&#10;if sp.PRWS_NUM1.str() != &quot;&quot;:&#10;	addr1 = addr1 + &quot;-&quot; + sp.PRWS_NUM1.str()&#10;if sp.PRWS_ADDR1.str() != &quot;&quot;:&#10;	addr1 = addr1 + &quot; &quot; + sp.PRWS_ADDR1.str()&#10;if sp.PRWS_LOT1.str() != &quot;&quot;:&#10;	addr1 = addr1 + &quot; &quot; + sp.PRWS_LOT1.str()&#10;&#10;if sp.PRWS_APT2.str() != &quot;&quot;:&#10;	addr2 = addr2 + sp.PRWS_APT2.str()&#10;if sp.PRWS_NUM2.str() != &quot;&quot;:&#10;	addr2 = addr2 + &quot;-&quot; + sp.PRWS_NUM2.str()&#10;if sp.PRWS_ADDR2.str() != &quot;&quot;:&#10;	addr2 = addr2 + &quot; &quot; + sp.PRWS_ADDR2.str()&#10;if sp.PRWS_LOT2.str() != &quot;&quot;:&#10;	addr2 = addr2 + &quot; &quot; + sp.PRWS_LOT2.str()&#10;&#10;if sp.PRWS_APT3.str() != &quot;&quot;:&#10;	addr3 = addr3 + sp.PRWS_APT3.str()&#10;if sp.PRWS_NUM3.str() != &quot;&quot;:&#10;	addr3 = addr3 + &quot;-&quot; + sp.PRWS_NUM3.str()&#10;if sp.PRWS_ADDR3.str() != &quot;&quot;:&#10;	addr3 = addr3 + &quot; &quot; + sp.PRWS_ADDR3.str()&#10;if sp.PRWS_LOT3.str() != &quot;&quot;:&#10;	addr3 = addr3 + &quot; &quot; + sp.PRWS_LOT3.str()&#10;&#10;if addr1 != &quot;&quot; or addr2 != &quot;&quot; or addr3 != &quot;&quot;:&#10;	return 1&#10;else:&#10;	return tds.SP_DISPOSE_PROP.val()"/>
+                </Input>
+            </Column>
+            <Column id="Cn19" width="30">
+            </Column>
+            <Column id="Cn20">
+                <Note id="Ne8">
+                    <Blurb id="Bb9">
+                        Sale of principal residence
+                    </Blurb>
+                </Note>
+            </Column>
+        </Row>
+        <Row id="Rw12" height="30">
+            <Column id="Cn21" col_span="5" visible_calc="return is_dual()"></Column>
+            <Column id="Cn22" col_span="3" visible_calc="return not is_dual()"></Column>
+        </Row>
+    </GroupLayout>
+    
+    <Paragraph id="Ph1">
+        <Note id="Ne9">
+            <Blurb id="Bb10">
+                <Strong id="Sg5">Note: </Strong>
+                If the property was your principal residence for all the years that you owned it, 
+                you don't have to pay tax on your capital gain, but you still need to report the sale.
+            </Blurb>
+        </Note>
+    </Paragraph>
+    
+    <Button id="Bn1" target="back">
+        <Blurb id="Bb11">Back</Blurb>
+    </Button>
+    
+    <Button id="Bn2" target_calc="taxp_addr1 = &quot;&quot;&#10;taxp_addr2 = &quot;&quot;&#10;taxp_addr3 = &quot;&quot;&#10;&#10;if taxp.PRWS_APT1.str() != &quot;&quot;:&#10;    taxp_addr1 = taxp_addr1 + taxp.PRWS_APT1.str()&#10;if taxp.PRWS_NUM1.str() != &quot;&quot;:&#10;    taxp_addr1 = taxp_addr1 + &quot;-&quot; + taxp.PRWS_NUM1.str()&#10;if taxp.PRWS_ADDR1.str() != &quot;&quot;:&#10;    taxp_addr1 = taxp_addr1 + &quot; &quot; + taxp.PRWS_ADDR1.str()&#10;if taxp.PRWS_LOT1.str() != &quot;&quot;:&#10;    taxp_addr1 = taxp_addr1 + &quot; &quot; + taxp.PRWS_LOT1.str()&#10;&#10;if taxp.PRWS_APT2.str() != &quot;&quot;:&#10;    taxp_addr2 = taxp_addr2 + taxp.PRWS_APT2.str()&#10;if taxp.PRWS_NUM2.str() != &quot;&quot;:&#10;    taxp_addr2 = taxp_addr2 + &quot;-&quot; + taxp.PRWS_NUM2.str()&#10;if taxp.PRWS_ADDR2.str() != &quot;&quot;:&#10;    taxp_addr2 = taxp_addr2 + &quot; &quot; + taxp.PRWS_ADDR2.str()&#10;if taxp.PRWS_LOT2.str() != &quot;&quot;:&#10;    taxp_addr2 = taxp_addr2 + &quot; &quot; + taxp.PRWS_LOT2.str()&#10;&#10;if taxp.PRWS_APT3.str() != &quot;&quot;:&#10;    taxp_addr3 = taxp_addr3 + taxp.PRWS_APT3.str()&#10;if taxp.PRWS_NUM3.str() != &quot;&quot;:&#10;    taxp_addr3 = taxp_addr3 + &quot;-&quot; + taxp.PRWS_NUM3.str()&#10;if taxp.PRWS_ADDR3.str() != &quot;&quot;:&#10;    taxp_addr3 = taxp_addr3 + &quot; &quot; + taxp.PRWS_ADDR3.str()&#10;if taxp.PRWS_LOT3.str() != &quot;&quot;:&#10;    taxp_addr3 = taxp_addr3 + &quot; &quot; + taxp.PRWS_LOT3.str()&#10;&#10;sp_addr1 = &quot;&quot;&#10;sp_addr2 = &quot;&quot;&#10;sp_addr3 = &quot;&quot;&#10;&#10;if is_dual():&#10;    if sp.PRWS_APT1.str() != &quot;&quot;:&#10;        sp_addr1 = sp_addr1 + sp.PRWS_APT1.str()&#10;    if sp.PRWS_NUM1.str() != &quot;&quot;:&#10;        sp_addr1 = sp_addr1 + &quot;-&quot; + sp.PRWS_NUM1.str()&#10;    if sp.PRWS_ADDR1.str() != &quot;&quot;:&#10;        sp_addr1 = sp_addr1 + &quot; &quot; + sp.PRWS_ADDR1.str()&#10;    if sp.PRWS_LOT1.str() != &quot;&quot;:&#10;        sp_addr1 = sp_addr1 + &quot; &quot; + sp.PRWS_LOT1.str()&#10;&#10;    if sp.PRWS_APT2.str() != &quot;&quot;:&#10;        sp_addr2 = sp_addr2 + sp.PRWS_APT2.str()&#10;    if sp.PRWS_NUM2.str() != &quot;&quot;:&#10;        sp_addr2 = sp_addr2 + &quot;-&quot; + sp.PRWS_NUM2.str()&#10;    if sp.PRWS_ADDR2.str() != &quot;&quot;:&#10;        sp_addr2 = sp_addr2 + &quot; &quot; + sp.PRWS_ADDR2.str()&#10;    if sp.PRWS_LOT2.str() != &quot;&quot;:&#10;        sp_addr2 = sp_addr2 + &quot; &quot; + sp.PRWS_LOT2.str()&#10;&#10;    if sp.PRWS_APT3.str() != &quot;&quot;:&#10;        sp_addr3 = sp_addr3 + sp.PRWS_APT3.str()&#10;    if sp.PRWS_NUM3.str() != &quot;&quot;:&#10;        sp_addr3 = sp_addr3 + &quot;-&quot; + sp.PRWS_NUM3.str()&#10;    if sp.PRWS_ADDR3.str() != &quot;&quot;:&#10;        sp_addr3 = sp_addr3 + &quot; &quot; + sp.PRWS_ADDR3.str()&#10;    if sp.PRWS_LOT3.str() != &quot;&quot;:&#10;        sp_addr3 = sp_addr3 + &quot; &quot; + sp.PRWS_LOT3.str()&#10;&#10;if (is_dual()) and ( (taxp_addr1 != &quot;&quot;) or (taxp_addr2 != &quot;&quot;) or (taxp_addr3 != &quot;&quot;) or (sp_addr1 != &quot;&quot;) or (sp_addr2 != &quot;&quot;) or (sp_addr3 != &quot;&quot;) ):&#10;    return &quot;step|s_pr_summary&quot;&#10;elif (not is_dual()) and ( (taxp_addr1 != &quot;&quot;) or (taxp_addr2 != &quot;&quot;) or (taxp_addr3 != &quot;&quot;) ):&#10;    return &quot;step|s_pr_summary&quot;&#10;&#10;if is_dual():&#10;	return &quot;step|s_pr_sp_dispose&quot;&#10;else:&#10;	return &quot;step|s_taxp_pr_redirect&quot;">
+        <Blurb id="Bb12">Continue</Blurb>
+    </Button>
+    
+</Step>

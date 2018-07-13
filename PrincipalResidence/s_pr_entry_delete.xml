@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE Step SYSTEM "http://qtdev.ca.intuit.com/dtd/Step.dtd">
+<Step id="s_pr_entry_delete">
+  <Title id="Te1">
+    <Blurb id="Bb1"/>
+  </Title>
+  <Header id="Hr1">
+    <Blurb id="Bb2">
+      <ColorName id="Ce1">
+        <Substitution id="Sn1"
+        value_calc="return interview.taxreturn.get().PINFO_FIRSTNAME.str()"/>:
+      </ColorName>Delete Confirmation</Blurb>
+  </Header>
+  <Paragraph id="Ph1">
+    <Note id="Ne1">
+      <Blurb id="Bb3">Are you sure you want to delete the principal residence
+        property located at <Strong id="Sg1">
+          <Substitution id="Sn2" value_calc="addr1 = &quot;&quot;&#10;addr2 = &quot;&quot;&#10;addr3 = &quot;&quot;&#10;&#10;if interview.taxreturn.get().PRWS_APT1.str() != &quot;&quot;:&#10;    addr1 = addr1 + interview.taxreturn.get().PRWS_APT1.str() + &quot;-&quot;&#10;if interview.taxreturn.get().PRWS_NUM1.str() != &quot;&quot;:&#10;    addr1 = addr1 + interview.taxreturn.get().PRWS_NUM1.str() + &quot; &quot;&#10;if interview.taxreturn.get().PRWS_ADDR1.str() != &quot;&quot;:&#10;    addr1 = addr1 + interview.taxreturn.get().PRWS_ADDR1.str() + &quot; &quot;&#10;if interview.taxreturn.get().PRWS_LOT1.str() != &quot;&quot;:&#10;    addr1 = addr1 + interview.taxreturn.get().PRWS_LOT1.str()&#10;&#10;if interview.taxreturn.get().PRWS_APT2.str() != &quot;&quot;:&#10;    addr2 = addr2 + interview.taxreturn.get().PRWS_APT2.str() + &quot;-&quot;&#10;if interview.taxreturn.get().PRWS_NUM2.str() != &quot;&quot;:&#10;    addr2 = addr2 + interview.taxreturn.get().PRWS_NUM2.str() + &quot; &quot;&#10;if interview.taxreturn.get().PRWS_ADDR2.str() != &quot;&quot;:&#10;    addr2 = addr2 + interview.taxreturn.get().PRWS_ADDR2.str() + &quot; &quot;&#10;if interview.taxreturn.get().PRWS_LOT2.str() != &quot;&quot;:&#10;    addr2 = addr2 + interview.taxreturn.get().PRWS_LOT2.str()&#10;&#10;if interview.taxreturn.get().PRWS_APT3.str() != &quot;&quot;:&#10;    addr3 = addr3 + interview.taxreturn.get().PRWS_APT3.str() + &quot;-&quot;&#10;if interview.taxreturn.get().PRWS_NUM3.str() != &quot;&quot;:&#10;    addr3 = addr3 + interview.taxreturn.get().PRWS_NUM3.str() + &quot; &quot;&#10;if interview.taxreturn.get().PRWS_ADDR3.str() != &quot;&quot;:&#10;    addr3 = addr3 + interview.taxreturn.get().PRWS_ADDR3.str() + &quot; &quot;&#10;if interview.taxreturn.get().PRWS_LOT3.str() != &quot;&quot;:&#10;    addr3 = addr3 + interview.taxreturn.get().PRWS_LOT3.str()&#10;&#10;if interview.whichVal.val() == 1:&#10;    return addr1&#10;elif interview.whichVal.val() == 2:&#10;    return addr2&#10;elif interview.whichVal.val() == 3:&#10;    return addr3&#10;else:&#10;    return &apos;&apos;"/>?</Strong>
+      </Blurb>
+    </Note>
+  </Paragraph>    <Paragraph id="Ph2">
+    <Note id="Ne2">
+      <Blurb id="Bb9">
+      </Blurb>
+    </Note>
+  </Paragraph>    <Paragraph id="Ph3" visible_calc="return is_dual()">
+    <Note id="Ne3">
+      <Blurb id="Bb10">
+        <Strong id="Sg2">Note: </Strong>        If this is a co-owned property, entries from <Substitution id="Sn3" value_calc="return taxp.PINFO_FIRSTNAME.str()"/>'s and <Substitution id="Sn4" value_calc="return sp.PINFO_FIRSTNAME.str()"/>'s        Principle Residence Worksheet will be deleted.
+      </Blurb>
+    </Note>
+  </Paragraph>
+  <Button id="Bn1" target="back">
+    <Blurb id="Bb6">Back</Blurb>
+  </Button>
+  <Button id="Bn2" target_calc="remove_pr_property(interview.taxreturn.get(),interview.whichVal.val())&#10;return &quot;return|&quot;">
+    <Blurb id="Bb7">Yes</Blurb>
+  </Button>
+  <Button id="Bn3" target="return|">
+    <Blurb id="Bb8">No</Blurb>
+  </Button>
+</Step>

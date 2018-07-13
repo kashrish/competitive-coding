@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE Step  SYSTEM "http://qtdev.ca.intuit.com/dtd/Step.dtd">
+<Step id="s_pr_t1255">
+    
+    <Title id="Te1">
+        <Blurb id="Bb1">
+            Designation of a property as a Principal Residence - Federal
+        </Blurb>
+    </Title>
+                    
+    <GroupLayout id="Gt1">
+        <Row id="Rw1" height="5">
+            <Column id="Cn1"></Column>
+        </Row>
+        <Row id="Rw2" visible_calc="if interview.instance.val() == 0 and interview.taxreturn.get().PRWS_ALL1.val() == 1:&#10;		return 0&#10;elif interview.instance.val() == 1 and interview.taxreturn.get().PRWS_ALL2.val() == 1:&#10;		return 0&#10;elif interview.instance.val() == 2 and interview.taxreturn.get().PRWS_ALL3.val() == 1:&#10;		return 0&#10;&#10;return 1&#10;">
+            <Column id="Cn2">
+                <Note id="Ne1">
+                    <Blurb id="Bb2">
+                        Your home wasn't your principal residence for the entire time you owned it, 
+                        so we'll need to calculate the taxable amount of your gain.                        
+                    </Blurb>
+                </Note>
+            </Column>
+        </Row>
+        <Row id="Rw3" height="40" visible_calc="if interview.instance.val() == 0 and interview.taxreturn.get().PRWS_ALL1.val() == 1:&#10;		return 0&#10;elif interview.instance.val() == 1 and interview.taxreturn.get().PRWS_ALL2.val() == 1:&#10;		return 0&#10;elif interview.instance.val() == 2 and interview.taxreturn.get().PRWS_ALL3.val() == 1:&#10;		return 0&#10;&#10;return 1&#10;">
+            <Column id="Cn3"></Column>
+        </Row>
+        <Row id="Rw4">
+            <Column id="Cn4">
+                <Note id="Ne2">
+                    <Blurb id="Bb3">
+                        <Strong id="Sg1">
+                            <Substitution id="Sn1" value_calc="return tax.get_taxpayer_name(interview.taxreturn.get())"/>,
+                        </Strong>
+                        tell us more about your property:
+                    </Blurb>
+                </Note>
+            </Column>
+        </Row>
+        <Row id="Rw5" height="10">
+            <Column id="Cn5"></Column>
+        </Row>
+    </GroupLayout>
+    
+    <GroupLayout id="Gt2">
+        <Row id="Rw6" visible_calc="if interview.instance.val() == 0 and interview.taxreturn.get().PRWS_ALL1.val() == 1:&#10;		return 0&#10;elif interview.instance.val() == 1 and interview.taxreturn.get().PRWS_ALL2.val() == 1:&#10;		return 0&#10;elif interview.instance.val() == 2 and interview.taxreturn.get().PRWS_ALL3.val() == 1:&#10;		return 0&#10;&#10;return 1&#10;">
+            <Column id="Cn6">
+                <Note id="Ne3">
+                    <Blurb id="Bb4">
+                        How many years did you own the property?
+                    </Blurb>
+                </Note>
+            </Column>
+            <Column id="Cn7" width="40"></Column>
+            <Column id="Cn8">
+                <Input id="It1">
+                    <InputField id="owned_years" default_mapping="interview.taxreturn.get().T1255_4[interview.instance.val()]" type="numeric" maxlength="2"
+                     validate_calc="try:&#10;	if formlet.owned_years.str()!=&quot;&quot;:&#10;		val = int(formlet.owned_years.str())&#10;except ValueError:&#10;	return 0&#10;if formlet.owned_years.val()!=0 and formlet.owned_years.val() &gt;= formlet.pr_years.val():&#10;	return 1&#10;else:&#10;	return 0">
+                        <ErrorMessage id="Ee1">No. of years owned is required and must be greater than or 
+                            equal to no. of years it was your principal residence</ErrorMessage>
+                    </InputField>
+                </Input>
+            </Column>
+        </Row>
+        <Row id="Rw7" height="20" visible_calc="if interview.instance.val() == 0 and interview.taxreturn.get().PRWS_ALL1.val() == 1:&#10;		return 0&#10;elif interview.instance.val() == 1 and interview.taxreturn.get().PRWS_ALL2.val() == 1:&#10;		return 0&#10;elif interview.instance.val() == 2 and interview.taxreturn.get().PRWS_ALL3.val() == 1:&#10;		return 0&#10;&#10;return 1&#10;">
+            <Column id="Cn9" col_span="3"></Column>
+        </Row>
+        <Row id="Rw8">
+            <Column id="Cn10">
+                <Note id="Ne4">
+                    <Blurb id="Bb5">
+                        How many years was it your principal residence?
+                    </Blurb>
+                </Note>
+            </Column>
+            <Column id="Cn11" width="40"></Column>
+            <Column id="Cn12">
+                <Input id="It2">
+                    <InputField id="pr_years" default_mapping="interview.taxreturn.get().T1255_1[interview.instance.val()]" type="numeric"/>
+                </Input>
+            </Column>
+        </Row>
+        <Row id="Rw9" height="60">
+            <Column id="Cn13" col_span="3"></Column>
+        </Row>
+        <Row id="Rw16" visible_calc="if interview.instance.val() == 0 and interview.taxreturn.get().PRWS_ALL1.val() == 1:&#10;		return 0&#10;elif interview.instance.val() == 1 and interview.taxreturn.get().PRWS_ALL2.val() == 1:&#10;		return 0&#10;elif interview.instance.val() == 2 and interview.taxreturn.get().PRWS_ALL3.val() == 1:&#10;		return 0&#10;&#10;return 1&#10;">
+            <Column id="Cn24" col_span="3">
+                <GroupLayout id="Gt3">
+                    <Row id="Rw10">
+                        <Column id="Cn14" col_span="3">
+                            <Note id="Ne5">
+                                <Blurb id="Bb6">
+                                    <Strong id="Sg2">
+                                        <Substitution id="Sn2" value_calc="return tax.get_taxpayer_name(interview.taxreturn.get())"/>,
+                                    </Strong>
+                                    enter the amounts related to <Strong id="Sg3">your disposition</Strong>:
+                                </Blurb> 
+                            </Note>
+                        </Column>
+                    </Row>
+                    <Row id="Rw11" height="30">
+                        <Column id="Cn15" col_span="3"></Column>
+                    </Row>
+                    <Row id="Rw12">
+                        <Column id="Cn16">
+                            <Note id="Ne6">
+                                <Blurb id="Bb7">
+                                    <Strong id="Sg4"><Link id="Lk1" target="definition|d_outlays_exp">Total outlays and expenses</Link></Strong>
+                                    related to the disposition
+                                </Blurb>
+                            </Note>
+                        </Column>
+                        <Column id="Cn17" width="40"></Column>
+                        <Column id="Cn18">
+                            <Input id="It3">
+                                <InputField id="Id3" default_mapping="interview.taxreturn.get().T1255_8[interview.instance.val()]" type="dac"/>
+                            </Input>
+                        </Column>
+                    </Row>
+                    <Row id="Rw13" height="20">
+                        <Column id="Cn19" col_span="3"></Column>
+                    </Row>
+                    <Row id="Rw14">
+                        <Column id="Cn20">
+                            <Note id="Ne7">
+                                <Blurb id="Bb8">
+                                    In 1994, did you bump up the tax cost of your property by a maximum of $100,000? If so, enter the
+                                    <Strong id="Sg5"><Link id="Lk2" target="definition|d_reduction">reduction</Link></Strong>
+                                    amount as a result of the capital gains election.
+                                </Blurb>
+                            </Note>
+                        </Column>
+                        <Column id="Cn21" width="40"></Column>
+                        <Column id="Cn22">
+                            <Input id="It4">
+                                <InputField id="Id4" default_mapping="interview.taxreturn.get().T1255_55[interview.instance.val()]" type="dac"/>
+                            </Input>
+                        </Column>
+                    </Row>
+                    <Row id="Rw15" height="20">
+                        <Column id="Cn23" col_span="3"></Column>
+                    </Row>
+                </GroupLayout>
+            </Column>
+        </Row>
+        
+    </GroupLayout>
+    
+    <Button id="Bn1" target="back">
+        <Blurb id="Bb9">Back</Blurb>
+    </Button>
+    
+    <Button id="Bn2" target_calc="if interview.isVal.val() == 1:&#10;    return &quot;return|&quot;&#10;&#10;if is_pq():&#10;    return &quot;step|s_pr_tp274&quot;&#10;&#10;if not is_dual():&#10;    return &quot;return|summary&quot;&#10;&#10;if (interview.taxreturn.get()==taxp and tds.SP_ADD_PROP.val()==0) or (interview.taxreturn.get()==sp):&#10;    return &quot;return|summary&quot;&#10;else:&#10;    return &quot;return|&quot;">
+        <Blurb id="Bb10">Continue</Blurb>
+    </Button>
+    
+</Step>

@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE Step  SYSTEM "http://qtdev.ca.intuit.com/dtd/Step.dtd">
+<Step id="s_pr_entry_form_3" entry_calc="if is_dual() and interview.taxreturn.get()==sp:&#10;    tds.taxp_pr_instance.set(0)">    
+    <Title id="Te1">
+        <Blurb id="Bb1">
+            <ColorName id="Ce1">
+                <Substitution id="Sn1" value_calc="return interview.taxreturn.get().PINFO_FIRSTNAME.str()"/>:
+            </ColorName>
+            Sale of your Principal Residence
+        </Blurb>
+    </Title>    
+    
+    <GroupLayout id="Gt1" width="100">
+        <Row id="Rw1" height="5">
+            <Column id="Cn1" col_span="7"></Column>
+        </Row>
+        <Row id="Rw2">
+            <Column id="Cn2" col_span="7">
+                <Note id="Ne1">
+                    <Blurb id="Bb2">
+                        <Substitution id="Sn2" value_calc="return interview.taxreturn.get().PINFO_FIRSTNAME.str()"/>,
+                        tell us about your property:
+                    </Blurb>
+                </Note>
+            </Column>
+        </Row>
+        <Row id="Rw3" height="40">
+            <Column id="Cn3" col_span="7"></Column>
+        </Row>
+        <Row id="Rw4">
+            <Column id="Cn4" width="27%" align="right">
+                <Note id="Ne2">
+                    <Blurb id="Bb3">
+                        Street No.
+                    </Blurb>
+                </Note>
+            </Column>
+            <Column id="Cn5" width="2%"></Column>
+            <Column id="Cn6" width="20%">
+                <Input id="It1">
+                    <InputField id="streetNo" type="text" default_mapping="interview.taxreturn.get().PRWS_NUM3" size="6" maxlength="6">
+                    </InputField>
+                </Input>
+            </Column>
+            <Column id="Cn7" width="2%"></Column>
+            <Column id="Cn8" align="right" width="27%">
+                <Note id="Ne3">
+                    <Blurb id="Bb4">
+                        Street name or PO Box
+                    </Blurb>
+                </Note>
+            </Column>
+            <Column id="Cn9" width="2%"></Column>
+            <Column id="Cn10" width="20%">
+                <Input id="It2">
+                    <InputField id="streetAddr" type="text" default_mapping="interview.taxreturn.get().PRWS_ADDR3" maxlength="30"
+                        validate_calc="if (formlet.has_key(&quot;streetAddr&quot;) and formlet.streetAddr.str() == &quot;&quot;) and (formlet.has_key(&quot;lotno&quot;) and formlet.lotno.str()==&quot;&quot;):&#10;	return 0&#10;else:&#10;	return 1">
+                        <ErrorMessage id="Ee4">Input required in either "Street or PO Box" or "Lot No."</ErrorMessage>
+                    </InputField>
+                </Input>
+            </Column>
+        </Row>
+        <Row id="Rw5">
+            <Column id="Cn11" align="right" width="27%">
+                <Note id="Ne4">
+                    <Blurb id="Bb5">
+                        Apt. No.
+                    </Blurb>
+                </Note>
+            </Column>
+            <Column id="Cn12" width="2%"></Column>
+            <Column id="Cn13" width="20%">
+                <Input id="It3">
+                    <InputField id="aptno" type="text" default_mapping="interview.taxreturn.get().PRWS_APT3" maxlength="4"/>
+                </Input>
+            </Column>
+            <Column id="Cn14" width="2%"></Column>
+            <Column id="Cn15" align="right" width="27%">
+                <Note id="Ne5">
+                    <Blurb id="Bb6">
+                        Lot No.
+                    </Blurb>
+                </Note>
+            </Column>
+            <Column id="Cn16" width="2%"></Column>
+            <Column id="Cn17" width="20">
+                <Input id="It4">
+                    <InputField id="lotno" type="text" default_mapping="interview.taxreturn.get().PRWS_LOT3" maxlength="30"
+                        validate_calc="if (formlet.has_key(&quot;streetAddr&quot;) and formlet.streetAddr.str() == &quot;&quot;) and (formlet.has_key(&quot;lotno&quot;) and formlet.lotno.str()==&quot;&quot;):&#10;	return 0&#10;else:&#10;	return 1">
+                        <ErrorMessage id="Ee5">Input required in either "Street or PO Box" or "Lot No."</ErrorMessage>
+                    </InputField>
+                </Input>
+            </Column>
+        </Row>
+        <Row id="Rw6">
+            <Column id="Cn18" align="right" width="27%">
+                <Note id="Ne6">
+                    <Blurb id="Bb7">
+                        City
+                    </Blurb>
+                </Note>
+            </Column>
+            <Column id="Cn19" width="2%"></Column>
+            <Column id="Cn20" width="20%">
+                <Input id="It5">
+                    <InputField id="city" type="text" default_mapping="interview.taxreturn.get().PRWS_CITY3" size="41" maxlength="41"/>
+                </Input>
+            </Column>
+            <Column id="Cn21" width="2%"></Column>
+            <Column id="Cn22" align="right" width="27%">
+                <Note id="Ne7">
+                    <Blurb id="Bb8">
+                        Province/Territory
+                    </Blurb>
+                </Note>
+            </Column>
+            <Column id="Cn23" width="2%"></Column>
+            <Column id="Cn24" width="20%">
+                <Input id="It6">
+                    <InputField id="province" type="text" default_mapping="interview.taxreturn.get().PRWS_PROV3" size="2" maxlength="2"
+                        validate_calc="if formlet.country.str()==&quot;CAN&quot; or formlet.country.str()==&quot;USA&quot;:&#10;	if formlet.province.str() == &quot;&quot;:&#10;		return 0&#10;if not formlet.province.str().isalpha():&#10;	return 0&#10;&#10;return 1">
+                        <ErrorMessage id="Ee11">The information in this field is invalid. Either there are too many characters entered or the format is incorrect or the information is missing. Please review.</ErrorMessage>
+                    </InputField>
+                </Input>
+            </Column>
+        </Row>
+        <Row id="Rw7">
+            <Column id="Cn25" align="right" width="27%">
+                <Note id="Ne8">
+                    <Blurb id="Bb9">
+                        Postal code
+                    </Blurb>
+                </Note>
+            </Column>
+            <Column id="Cn26" width="2%"></Column>
+            <Column id="Cn27" width="20%">
+                <Input id="It7">
+                    <InputField id="postal" type="text" default_mapping="interview.taxreturn.get().PRWS_POST3" size="10" maxlength="10"
+                        validate_calc="if formlet.country.str()==&quot;CAN&quot;:&#10;	postal = formlet.postal.str()&#10;	if len(postal)==6:&#10;		postal = postal[0:3] + &quot; &quot; + postal[3:6]&#10;	if (not check_postal_code(postal.upper(), 0)):&#10;		return 0&#10;if formlet.country.str()==&quot;USA&quot; and (not check_zip_code(formlet.postal.str())):&#10;	return 0&#10;&#10;return 1">
+                        <ErrorMessage id="Ee12">Postal code or zip code is required. If your country code is "CAN", the postal code should
+                            be of the format "A9A 9A9". If your country code is "USA", the zip code should be of the format "99999-9999".</ErrorMessage>
+                    </InputField>
+                </Input>
+            </Column>
+            <Column id="Cn28" width="2%"></Column>
+            <Column id="Cn29" align="right" width="27%">
+                <Note id="Ne9">
+                    <Blurb id="Bb10">
+                        <Link id="Lk5" target="definition|HE_T1135_COUNS"><Strong id="Sg6">Country code</Strong></Link>
+                    </Blurb>
+                </Note>
+            </Column>
+            <Column id="Cn30" width="2%"></Column>
+            <Column id="Cn31" width="20">
+                <Input id="It8">
+                    <InputField id="country" type="text" default_mapping="interview.taxreturn.get().PRWS_CNTRY3" size="3" maxlength="3"
+                        validate_calc="if formlet.country.str().isalpha() and len(formlet.country.str())==3:&#10;	return 1&#10;else:&#10;	return 0">
+                        <ErrorMessage id="Ee10">A 3 letter country code is required.</ErrorMessage>
+                    </InputField>
+                </Input>
+            </Column>
+        </Row>
+        <Row id="Rw18" height="40">
+            <Column id="Cn57" col_span="7"></Column>
+        </Row>
+        <Row id="Rw19">
+            <Column id="Cn58" col_span="7">
+                <Note id="Ne16">
+                    <Blurb id="Bb27">
+                        <Strong id="Sg7"><Substitution id="Sn12" value_calc="return interview.taxreturn.get().PINFO_FIRSTNAME.str()"/>,</Strong>
+                        answer the following info as it applies to you. 
+                    </Blurb>
+                    <Blurb id="Bb28" visible_calc="return is_dual()">
+                        Later, we'll ask about
+                        <Strong id="Sg8"><Substitution id="Sn13" value_calc="if interview.taxreturn.get()==taxp:&#10;	return sp.PINFO_FIRSTNAME.str()&#10;else:&#10;	return taxp.PINFO_FIRSTNAME.str()"/></Strong>
+                    </Blurb>
+                </Note>
+            </Column>
+        </Row>
+        <Row id="Rw8" height="50">
+            <Column id="Cn32" col_span="7"></Column>
+        </Row>
+        <Row id="Rw11">
+            <Column id="Cn35" align="right" width="27%">
+                <Note id="Ne11">
+                    <Blurb id="Bb12">
+                        This was 
+                        <Substitution id="Sn3" value_calc="return interview.taxreturn.get().PINFO_FIRSTNAME.str()"/>'s 
+                        principal residence for
+                    </Blurb>
+                </Note>
+            </Column>
+            <Column id="Cn36" width="2%"></Column>
+            <Column id="Cn37" width="20%">
+                <Input id="It9">
+                    <InputField id="pr_years" type="numeric" value_calc="if interview.taxreturn.get().PRWS_ALL3.val() == 1:&#10;	return 1&#10;elif interview.taxreturn.get().PRWS_SOME3.val() == 1:&#10;	return 2&#10;else:&#10;	return 0"
+                    validate_calc="return (formlet.has_key(&quot;pr_years&quot;) and formlet.pr_years.val()!=0)"
+                     store_calc="if formlet.pr_years.val() == 1:&#10;	interview.taxreturn.get().PRWS_ALL3.set(1)&#10;	interview.taxreturn.get().PRWS_SOME3.set(0)&#10;elif formlet.pr_years.val() == 2:&#10;	interview.taxreturn.get().PRWS_ALL3.set(0)&#10;	interview.taxreturn.get().PRWS_SOME3.set(1)&#10;else:&#10;	interview.taxreturn.get().PRWS_ALL3.set(0)&#10;	interview.taxreturn.get().PRWS_SOME3.set(0)">
+                        <ErrorMessage id="Ee2">Select an option</ErrorMessage>
+                        <SelectionList id="St1">
+                            <Selection id="Sn4">
+                                <SelectionLabel id="Sl1">
+                                    <Blurb id="Bb13">Select</Blurb>
+                                </SelectionLabel>
+                                <SelectionValue id="Se1">
+                                    <Blurb id="Bb14">0</Blurb>
+                                </SelectionValue>
+                            </Selection>
+                            <Selection id="Sn5">
+                                <SelectionLabel id="Sl2">
+                                    <Blurb id="Bb15">all of the years owned</Blurb>
+                                </SelectionLabel>
+                                <SelectionValue id="Se2">
+                                    <Blurb id="Bb16">1</Blurb>
+                                </SelectionValue>
+                            </Selection>
+                            <Selection id="Sn6">
+                                <SelectionLabel id="Sl3">
+                                    <Blurb id="Bb17">some of the years owned</Blurb>
+                                </SelectionLabel>
+                                <SelectionValue id="Se3">
+                                    <Blurb id="Bb18">2</Blurb>
+                                </SelectionValue>
+                            </Selection>
+                        </SelectionList>
+                    </InputField>
+                </Input>
+            </Column>
+            <Column id="Cn38" width="2%"></Column>
+            <Column id="Cn39" width="27%"></Column>
+            <Column id="Cn40" width="2%"></Column>
+            <Column id="Cn41" width="20%"></Column>
+        </Row>
+        <Row id="Rw12" height="50">
+            <Column id="Cn42" col_span="7"></Column>
+        </Row>
+        <Row id="Rw20">
+            <Column id="Cn59" col_span="7">
+                <Note id="Ne17">
+                    <Blurb id="Bb29">
+                        Answer the following as it relates to
+                        <Strong id="Sg9">your portion</Strong>
+                        of the disposition:
+                    </Blurb>
+                </Note>
+            </Column>
+        </Row>
+        <Row id="Rw21" height="30">
+            <Column id="Cn60" col_span="7"></Column>
+        </Row>
+        <Row id="Rw13">
+            <Column id="Cn43" align="right" width="27%">
+                <Note id="Ne12">
+                    <Blurb id="Bb19">
+                        <Strong id="Sg2">
+                            <Substitution id="Sn7" value_calc="return interview.taxreturn.get().PINFO_FIRSTNAME.str()"/>'s 
+                            <Link id="Lk2" target="definition|d_acb">adjusted cost base</Link>
+                        </Strong>
+                    </Blurb>
+                </Note>
+            </Column>
+            <Column id="Cn44" width="2%"></Column>
+            <Column id="Cn45" width="20%">
+                <Input id="It10">
+                    <InputField id="acb" type="dac" default_mapping="interview.taxreturn.get().PRWS_ACB3"
+                        validate_calc="if len(formlet.acb.str()) &gt; 12:&#10;	return 0&#10;if (is_numeric(formlet.acb.str()) and formlet.acb.val() &gt; 0):&#10;	if (len(str(formlet.acb.val())) &gt; 7):&#10;		return 0&#10;	return 1&#10;else:&#10;	return 0">
+                        <ErrorMessage id="Ee6">Adjusted cost base is required. You have entered too few or too many numbers.</ErrorMessage>
+                    </InputField>
+                </Input>
+            </Column>
+            <Column id="Cn46" width="2%"></Column>
+            <Column id="Cn47" align="right" width="27%">
+                <Note id="Ne13">
+                    <Blurb id="Bb20">
+                        <Strong id="Sg3">
+                            <Substitution id="Sn8" value_calc="return interview.taxreturn.get().PINFO_FIRSTNAME.str()"/>'s 
+                            <Link id="Lk3" target="definition|HE_D_DEEMED_PROC_DIS">
+                                proceeds of disposition
+                            </Link>
+                        </Strong>
+                    </Blurb>
+                </Note>
+            </Column>
+            <Column id="Cn48" width="2%"></Column>
+            <Column id="Cn49" width="20%">
+                <Input id="It11">
+                    <InputField id="proceeds" type="dac" default_mapping="interview.taxreturn.get().PRWS_PRCD3"
+                        validate_calc="if len(formlet.proceeds.str()) &gt; 12:&#10;	return 0&#10;if (is_numeric(formlet.proceeds.str()) and formlet.proceeds.val() &gt; 0):&#10;	if (len(str(formlet.proceeds.val())) &gt; 7):&#10;		return 0&#10;	return 1&#10;else:&#10;	return 0">
+                        <ErrorMessage id="Ee7">Proceeds of disposition is required. You have entered too few or too many numbers.</ErrorMessage>
+                    </InputField>
+                </Input>
+            </Column>
+        </Row>
+        <Row id="Rw14">
+            <Column id="Cn50" align="right" width="27%">
+                <Note id="Ne14">
+                    <Blurb id="Bb21">
+                        <Strong id="Sg4">
+                            <Substitution id="Sn9" value_calc="return interview.taxreturn.get().PINFO_FIRSTNAME.str()"/>'s 
+                            <Link id="Lk4" target="definition|d_year_aquis">year of acquisition</Link>
+                        </Strong>
+                    </Blurb>
+                </Note>
+            </Column>
+            <Column id="Cn51" width="2%"></Column>
+            <Column id="Cn52" width="20%">
+                <Input id="It12">
+                    <InputField id="yearTaxp" type="numeric" default_mapping="interview.taxreturn.get().PRWS_ACQYR3" size="4" maxlength="4"
+                        validate_calc="if formlet.has_key(&quot;yearTaxp&quot;):&#10;    if formlet.yearTaxp.val() &gt; get_tax_year() or formlet.yearTaxp.val() &lt; 1972:&#10;        return 0&#10;&#10;return 1&#10;">
+                        <ErrorMessage id="Ee3">
+                            The year of acquisition is required and must be between 1972 and <Substitution id="Sn10" value_calc="return get_tax_year()"/> (inclusive)
+                        </ErrorMessage>
+                    </InputField>
+                </Input>
+            </Column>
+            <Column id="Cn53" col_span="4"></Column>
+        </Row>
+    </GroupLayout>
+    
+    <GroupLayout id="Gt2" visible_calc="if (interview.taxreturn.get().T1_DEAD.str() != &quot;&quot;) and (int(interview.taxreturn.get().T1_DEAD.str()[6:]) == get_tax_year()):&#10;	return 1&#10;else:&#10;	return 0">
+        <Row id="Rw15" height="50">
+            <Column id="Cn54"></Column>
+        </Row>
+        <Row id="Rw16">
+            <Column id="Cn55">
+                <Note id="Ne15">
+                    <Blurb id="Bb22">
+                        Was the property disposed of as a result of
+                        <Strong id="Sg5">
+                            <Substitution id="Sn11" value_calc="return interview.taxreturn.get().PINFO_FIRSTNAME.str()"/>'s 
+                        </Strong>
+                        death?
+                    </Blurb>
+                </Note>
+            </Column>
+        </Row>
+        <Row id="Rw17">
+            <Column id="Cn56">
+                <Input id="It13">
+                    <RadioButtonsGroup id="death" layout="in_same_column">
+                        <RadioButton id="death_yes">
+                            <InputLabel id="Il1" label_on="right">
+                                <Blurb id="Bb23">Yes</Blurb>
+                            </InputLabel>
+                            <InputField id="Id1" type="radio" default_mapping="tds.PRWS_DEATH_3" value_calc="return interview.taxreturn.get().PRWS_DEATH_Y3.val()==1"
+                                store_calc="if formlet.has_key(&quot;death&quot;):&#10;	if formlet.death.str() == &quot;death_yes&quot;:&#10;		interview.taxreturn.get().PRWS_DEATH_Y3.set(1)&#10;		interview.taxreturn.get().PRWS_DEATH_N3.set(0)&#10;	elif formlet.death.str() == &quot;death_no&quot;:&#10;		interview.taxreturn.get().PRWS_DEATH_Y3.set(0)&#10;		interview.taxreturn.get().PRWS_DEATH_N3.set(1)&#10;else:&#10;	interview.taxreturn.get().PRWS_DEATH_Y3.set(0)&#10;	interview.taxreturn.get().PRWS_DEATH_N3.set(1)"
+                                validate_calc="if formlet.has_key(&quot;death&quot;) and formlet.death.str() !=&quot;&quot;:&#10;	return 1&#10;else:&#10;	return 0">
+                                <ErrorMessage id="Ee8">Select an option</ErrorMessage>
+                            </InputField>
+                        </RadioButton>
+                        <RadioButton id="death_no">
+                            <InputLabel id="Il2" label_on="right">
+                                <Blurb id="Bb24">No</Blurb>
+                            </InputLabel>
+                            <InputField id="Id2" type="radio" default_mapping="tds.PRWS_DEATH_3" value_calc="return interview.taxreturn.get().PRWS_DEATH_N3.val()==1"
+                                store_calc="if formlet.has_key(&quot;death&quot;):&#10;	if formlet.death.str() == &quot;death_yes&quot;:&#10;		interview.taxreturn.get().PRWS_DEATH_Y3.set(1)&#10;		interview.taxreturn.get().PRWS_DEATH_N3.set(0)&#10;	elif formlet.death.str() == &quot;death_no&quot;:&#10;		interview.taxreturn.get().PRWS_DEATH_Y3.set(0)&#10;		interview.taxreturn.get().PRWS_DEATH_N3.set(1)&#10;else:&#10;	interview.taxreturn.get().PRWS_DEATH_Y3.set(0)&#10;	interview.taxreturn.get().PRWS_DEATH_N3.set(1)"
+                                 validate_calc="if formlet.has_key(&quot;death&quot;) and formlet.death.str() !=&quot;&quot;:&#10;	return 1&#10;else:&#10;	return 0">
+                                <ErrorMessage id="Ee9">Select an option</ErrorMessage>
+                            </InputField>
+                        </RadioButton>
+                    </RadioButtonsGroup>
+                </Input>
+            </Column>
+        </Row>
+    </GroupLayout>
+    
+    <Button id="Bn1" target="back">
+        <Blurb id="Bb25">Back</Blurb>
+    </Button>
+    
+    <Button id="Bn2" target_calc="showSummary = 1&#10;&#10;if not formlet.has_key(&quot;death&quot;):&#10;    interview.taxreturn.get().PRWS_DEATH_Y3.set(0)&#10;    interview.taxreturn.get().PRWS_DEATH_N3.set(1)&#10;&#10;if interview.taxreturn.get() == taxp:&#10;    if is_dual() and tds.SP_DISPOSE.val()==1:&#10;        taxp.PRWS_SP_Y3.set(1)&#10;        taxp.PRWS_SP_N3.set(0)&#10;        tds.taxp_pr_instance.set(3)&#10;        tds.SP_DISPOSE.set(0)&#10;        tds.SP_ADD_PROP.set(1)&#10;        showSummary = 0&#10;    elif tds.SP_ADD_PROP.val()==1:&#10;        showSummary = 0&#10;    else:&#10;        showSummary = 1&#10;&#10;if interview.taxreturn.get().PRWS_LINK3.val() == 0:&#10;    interview.taxreturn.get().PRWS_SP_Y3.set(0)&#10;    interview.taxreturn.get().PRWS_SP_N3.set(1)&#10;&#10;if (interview.taxreturn.get().PRWS_ALL3.val()==1):&#10;    acq_yr = interview.taxreturn.get().PRWS_ACQYR3.val()&#10;    years_bef82 = 0&#10;    years_aft81 = 0&#10;    if acq_yr &lt; 1982 and acq_yr &gt; 1971:&#10;        years_bef82 = 1982 - acq_yr&#10;        years_aft81 = get_tax_year() - 1982&#10;    elif acq_yr &gt; 1981:&#10;        years_aft81 = get_tax_year() - acq_yr&#10;    if interview.taxreturn.get().PRWS_DEATH_Y3.val():&#10;        if years_bef82 &gt; 0:&#10;            interview.taxreturn.get().T1255_2[2].set(years_bef82)&#10;        if years_aft81 &gt; 0:&#10;            interview.taxreturn.get().T1255_1[2].set(years_aft81)&#10;    else:&#10;        if years_bef82 &gt; 0:&#10;            interview.taxreturn.get().T2091_2[2].set(years_bef82)&#10;        if years_aft81 &gt; 0:&#10;            interview.taxreturn.get().T2091_1[2].set(years_aft81)&#10;&#10;if interviewState.curInterviewId.str() == &quot;i_pr_entry_form_3&quot;:&#10;    return &quot;interview|i_pr_designation(taxreturn=%s,instance=2,isVal=1)&quot; % get_taxpayer_str(interview.taxreturn.get())&#10;elif interviewState.curInterviewId.str() == &quot;i_pr_val_3&quot;:&#10;    return &quot;return|&quot;&#10;&#10;if interview.taxreturn.get().PINFO_MARRY.val() == 3:&#10;	if interview.taxreturn.get().PINFO_MARITAL_CHANGE_DATE.str()!=&quot;&quot;:&#10;		return &quot;step|s_pr_sp_transfer_3(showSummary=%d)&quot; % showSummary&#10;else:&#10;	return &quot;step|s_pr_sp_transfer_3(showSummary=%d)&quot; % showSummary&#10;&#10;return &quot;interview|i_pr_designation(taxreturn=%s,instance=2,isVal=0)&quot; % get_taxpayer_str(interview.taxreturn.get())"
+     rebound_calc="if interviewState.curReturn.str() == &quot;summary&quot;:&#10;	return &quot;return|summary&quot;&#10;else:&#10;	return &quot;return|&quot;">
+        <Blurb id="Bb26">Continue</Blurb>
+    </Button>
+    
+</Step>

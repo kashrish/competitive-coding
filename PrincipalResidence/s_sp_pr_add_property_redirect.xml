@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE Step SYSTEM "http://qtdev.ca.intuit.com/dtd/Step.dtd">
+
+<Step id="s_sp_pr_add_property_redirect" restore_redirect_calc="if not is_dual():&#10;    return &quot;step|s_pr_summary&quot;&#10;&#10;if (tds.SP_ADD_PROP.val() == 1):&#10;    return &quot;interview|i_pr_add_property(taxreturn=sp)&quot;&#10;else:&#10;    return &quot;step|s_pr_summary&quot;"
+    redirect_calc="if not is_dual():&#10;    return &quot;step|s_pr_summary&quot;&#10;&#10;if (tds.SP_ADD_PROP.val() == 1):&#10;    return &quot;interview|i_pr_add_property(taxreturn=sp)&quot;&#10;else:&#10;    return &quot;step|s_pr_summary&quot;"
+    rebound_calc="tds.taxp_pr_instance.set(0)&#10;return &quot;step|s_pr_summary&quot;">
+    
+    
+    <Title id="Te167797">
+        
+        <Blurb id="Bb167798"/>
+        
+    </Title>
+    
+    <Note id="Ne167799">
+        
+        <Blurb id="Bb167800">This step redirects the user  to </Blurb>
+        
+    </Note>
+    
+    <Button id="Bn167801" target="return|">
+        
+        <Blurb id="Bb167802">Continue</Blurb>
+        
+    </Button>
+    
+</Step>
+

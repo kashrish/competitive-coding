@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE Step SYSTEM "http://qtdev.ca.intuit.com/dtd/Step.dtd">
+
+<Step id="s_sp_pr_redirect" restore_redirect_calc="nextStep = &quot;step|s_rental_yn&quot;&#10;if tax.is_module(tax.Module.Basic) or tax.is_module(tax.Module.FormsOnly):&#10;    nextStep = &apos;step|s_alimony_income&apos;&#10;else:&#10;    nextStep = &quot;step|s_rental_yn&quot;&#10;&#10;if not is_dual():&#10;    return nextStep&#10;&#10;if (tds.SP_ADD_PROP.val() == 1):&#10;    return &quot;interview|i_principal_residence(taxreturn=sp)&quot;&#10;else:&#10;    return nextStep"
+    redirect_calc="nextStep = &quot;step|s_rental_yn&quot;&#10;if tax.is_module(tax.Module.Basic) or tax.is_module(tax.Module.FormsOnly):&#10;    nextStep = &apos;step|s_alimony_income&apos;&#10;else:&#10;    nextStep = &quot;step|s_rental_yn&quot;&#10;&#10;if not is_dual():&#10;    return nextStep&#10;&#10;if (tds.SP_ADD_PROP.val() == 1):&#10;    return &quot;interview|i_principal_residence(taxreturn=sp)&quot;&#10;else:&#10;    return nextStep"
+    rebound_calc="tds.SP_ADD_PROP.set(0)&#10;tds.taxp_pr_instance.set(0)&#10;if interviewState.curReturn.str() == &quot;summary&quot;:&#10;    return &quot;step|s_pr_summary&quot;&#10;else:&#10;    if tax.is_module(tax.Module.Basic) or tax.is_module(tax.Module.FormsOnly):&#10;        return &apos;step|s_alimony_income&apos;&#10;    else:&#10;        return &quot;step|s_rental_yn&quot;">
+    
+    
+    <Title id="Te167797">
+        
+        <Blurb id="Bb167798"/>
+        
+    </Title>
+    
+    <Note id="Ne167799">
+        
+        <Blurb id="Bb167800">This step redirects the user  to </Blurb>
+        
+    </Note>
+    
+    <Button id="Bn167801" target="return|">
+        
+        <Blurb id="Bb167802">Continue</Blurb>
+        
+    </Button>
+    
+</Step>
+

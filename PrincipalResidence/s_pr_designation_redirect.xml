@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE Step SYSTEM "http://qtdev.ca.intuit.com/dtd/Step.dtd">
+
+<Step id="s_pr_designation_redirect" restore_redirect_calc="if interview.instance.val() == 0:&#10;	if interview.taxreturn.get().PRWS_DEATH_Y1.val()==1 and interview.taxreturn.get().PRWS_DEATH_N1.val()==0:&#10;		if interview.taxreturn.get().PRWS_ACQYR1.val() &gt; 1981:&#10;			return &quot;step|s_pr_t1255&quot;&#10;		else:&#10;			return &quot;step|s_pr_t1255_pre1982&quot;&#10;	else:&#10;		if interview.taxreturn.get().PRWS_ACQYR1.val() &gt; 1981:&#10;			return &quot;step|s_pr_t2091&quot;&#10;		else:&#10;			return &quot;step|s_pr_t2091_pre1982&quot;&#10;elif interview.instance.val() == 1:&#10;	if interview.taxreturn.get().PRWS_DEATH_Y2.val()==1 and interview.taxreturn.get().PRWS_DEATH_N2.val()==0:&#10;		if interview.taxreturn.get().PRWS_ACQYR2.val() &gt; 1981:&#10;			return &quot;step|s_pr_t1255&quot;&#10;		else:&#10;			return &quot;step|s_pr_t1255_pre1982&quot;&#10;	else:&#10;		if interview.taxreturn.get().PRWS_ACQYR2.val() &gt; 1981:&#10;			return &quot;step|s_pr_t2091&quot;&#10;		else:&#10;			return &quot;step|s_pr_t2091_pre1982&quot;&#10;elif interview.instance.val() == 2:&#10;	if interview.taxreturn.get().PRWS_DEATH_Y3.val()==1 and interview.taxreturn.get().PRWS_DEATH_N3.val()==0:&#10;		if interview.taxreturn.get().PRWS_ACQYR3.val() &gt; 1981:&#10;			return &quot;step|s_pr_t1255&quot;&#10;		else:&#10;			return &quot;step|s_pr_t1255_pre1982&quot;&#10;	else:&#10;		if interview.taxreturn.get().PRWS_ACQYR3.val() &gt; 1981:&#10;			return &quot;step|s_pr_t2091&quot;&#10;		else:&#10;			return &quot;step|s_pr_t2091_pre1982&quot;&#10;else:&#10;	return &quot;return|&quot;"
+    redirect_calc="if interview.instance.val() == 0:&#10;	if interview.taxreturn.get().PRWS_DEATH_Y1.val()==1 and interview.taxreturn.get().PRWS_DEATH_N1.val()==0:&#10;		if interview.taxreturn.get().PRWS_ACQYR1.val() &gt; 1981:&#10;			return &quot;step|s_pr_t1255&quot;&#10;		else:&#10;			return &quot;step|s_pr_t1255_pre1982&quot;&#10;	else:&#10;		if interview.taxreturn.get().PRWS_ACQYR1.val() &gt; 1981:&#10;			return &quot;step|s_pr_t2091&quot;&#10;		else:&#10;			return &quot;step|s_pr_t2091_pre1982&quot;&#10;elif interview.instance.val() == 1:&#10;	if interview.taxreturn.get().PRWS_DEATH_Y2.val()==1 and interview.taxreturn.get().PRWS_DEATH_N2.val()==0:&#10;		if interview.taxreturn.get().PRWS_ACQYR2.val() &gt; 1981:&#10;			return &quot;step|s_pr_t1255&quot;&#10;		else:&#10;			return &quot;step|s_pr_t1255_pre1982&quot;&#10;	else:&#10;		if interview.taxreturn.get().PRWS_ACQYR2.val() &gt; 1981:&#10;			return &quot;step|s_pr_t2091&quot;&#10;		else:&#10;			return &quot;step|s_pr_t2091_pre1982&quot;&#10;elif interview.instance.val() == 2:&#10;	if interview.taxreturn.get().PRWS_DEATH_Y3.val()==1 and interview.taxreturn.get().PRWS_DEATH_N3.val()==0:&#10;		if interview.taxreturn.get().PRWS_ACQYR3.val() &gt; 1981:&#10;			return &quot;step|s_pr_t1255&quot;&#10;		else:&#10;			return &quot;step|s_pr_t1255_pre1982&quot;&#10;	else:&#10;		if interview.taxreturn.get().PRWS_ACQYR3.val() &gt; 1981:&#10;			return &quot;step|s_pr_t2091&quot;&#10;		else:&#10;			return &quot;step|s_pr_t2091_pre1982&quot;&#10;else:&#10;	return &quot;return|&quot;"
+    >
+    
+    
+    <Title id="Te167797">
+        
+        <Blurb id="Bb167798"/>
+        
+    </Title>
+    
+    <Note id="Ne167799">
+        
+        <Blurb id="Bb167800">This step redirects the user  to </Blurb>
+        
+    </Note>
+    
+    <Button id="Bn167801" target="return|">
+        
+        <Blurb id="Bb167802">Continue</Blurb>
+        
+    </Button>
+    
+</Step>
+

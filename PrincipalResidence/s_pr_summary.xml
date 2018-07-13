@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE Step  SYSTEM "http://qtdev.ca.intuit.com/dtd/Step.dtd">
+<Step id="s_pr_summary">
+    
+    <Title id="Te1">
+        <Blurb id="Bb1">
+            Sale of your Principal Residence Summary
+        </Blurb>
+    </Title>
+                    
+    <Paragraph id="Ph1">
+        <Note id="Ne1">
+            <Blurb id="Bb2">
+                The following list summarizes the sale of your principal residence(s). 
+                If you wish to review or edit an item on the list, click on the applicable item.
+            </Blurb>
+        </Note>
+    </Paragraph>
+    
+    <!-- Start of taxpayer summary -->
+    <Table id="Te2" frame="off" grid="off" width="600">
+        <TableHeader id="Tr1">
+            <Row id="Rw1" height="20">
+                <Column id="Cn1" col_span="9" width="600"></Column>
+            </Row>
+            <Row id="Rw2">
+                <Column id="Cn2" align="left" width="150">
+                    <Note id="Ne2">
+                        <Blurb id="Bb3">
+                            Summary for 
+                            <Substitution id="Sn1" value_calc="return tax.get_taxpayer_name(taxp)"/>
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn3" width="20"></Column>
+                <Column id="Cn4" align="left" width="100">
+                    <Note id="Ne3">
+                        <Blurb id="Bb4">
+                            Proceeds
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn5" width="10"></Column>
+                <Column id="Cn6" align="left" width="100">
+                    <Note id="Ne4">
+                        <Blurb id="Bb5">
+                            Federal capital gains
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn7" width="10"></Column>
+                <Column id="Cn8" align="left" visible_calc="return is_pq()" width="100">
+                    <Note id="Ne5">
+                        <Blurb id="Bb6">
+                            Québec capital gains
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn9" width="100" visible_calc="return not is_pq()"></Column>
+                <Column id="Cn10" width="10"></Column>
+                <Column id="Cn11" width="100"></Column>
+            </Row>
+            <Row id="Rw3" height="20">
+                <Column id="Cn12" col_span="9" width="600"></Column>
+            </Row>
+            <Row id="Rw4" background_colour="#F0F0F0" height="30"
+            visible_calc="taxp_addr1 = &quot;&quot;&#10;taxp_addr2 = &quot;&quot;&#10;taxp_addr3 = &quot;&quot;&#10;&#10;if taxp.PRWS_APT1.str() != &quot;&quot;:&#10;    taxp_addr1 = taxp_addr1 + taxp.PRWS_APT1.str()&#10;if taxp.PRWS_NUM1.str() != &quot;&quot;:&#10;    taxp_addr1 = taxp_addr1 + &quot;-&quot; + taxp.PRWS_NUM1.str()&#10;if taxp.PRWS_ADDR1.str() != &quot;&quot;:&#10;    taxp_addr1 = taxp_addr1 + &quot; &quot; + taxp.PRWS_ADDR1.str()&#10;if taxp.PRWS_LOT1.str() != &quot;&quot;:&#10;    taxp_addr1 = taxp_addr1 + &quot; &quot; + taxp.PRWS_LOT1.str()&#10;&#10;if taxp.PRWS_APT2.str() != &quot;&quot;:&#10;    taxp_addr2 = taxp_addr2 + taxp.PRWS_APT2.str()&#10;if taxp.PRWS_NUM2.str() != &quot;&quot;:&#10;    taxp_addr2 = taxp_addr2 + &quot;-&quot; + taxp.PRWS_NUM2.str()&#10;if taxp.PRWS_ADDR2.str() != &quot;&quot;:&#10;    taxp_addr2 = taxp_addr2 + &quot; &quot; + taxp.PRWS_ADDR2.str()&#10;if taxp.PRWS_LOT2.str() != &quot;&quot;:&#10;    taxp_addr2 = taxp_addr2 + &quot; &quot; + taxp.PRWS_LOT2.str()&#10;&#10;if taxp.PRWS_APT3.str() != &quot;&quot;:&#10;    taxp_addr3 = taxp_addr3 + taxp.PRWS_APT3.str()&#10;if taxp.PRWS_NUM3.str() != &quot;&quot;:&#10;    taxp_addr3 = taxp_addr3 + &quot;-&quot; + taxp.PRWS_NUM3.str()&#10;if taxp.PRWS_ADDR3.str() != &quot;&quot;:&#10;    taxp_addr3 = taxp_addr3 + &quot; &quot; + taxp.PRWS_ADDR3.str()&#10;if taxp.PRWS_LOT3.str() != &quot;&quot;:&#10;    taxp_addr3 = taxp_addr3 + &quot; &quot; + taxp.PRWS_LOT3.str()&#10;&#10;if taxp_addr1 or taxp_addr2 or taxp_addr3:&#10;    return 0&#10;else:&#10;    return 1 ">
+                <Column id="Cn13" col_span="9" align="left" width="600">
+                    <Note id="Ne6">
+                        <Blurb id="Bb7" style="css-style| padding-left: 20px">
+                            No properties entered
+                        </Blurb>
+                    </Note>
+                </Column>
+            </Row>
+        </TableHeader>
+        <TableBody id="Ty1" greenbar_size="1" allow_selection="no" iterator="__i__" limit="5" start="1">
+            <Row id="Rw__i__98765" visible_calc="if __i__ &lt; 4 and (taxp.PRWS_ADDR__i__.str() or taxp.PRWS_LOT__i__.str() or taxp.T2091_9954[__i__ - 1].val()!=0 or taxp.PRWS_ACQYR__i__.val() != 0):&#10; return 1&#10;else:&#10; return 0 ">
+                <Column align="left" id="Cn__i__316002" width="150">
+                    <Note id="Ne__i__316006">
+                        <Blurb id="Bb__i__316007">
+                            <Link id="Lk__i__316038"
+                                target_calc="return &quot;interview|i_pr_edit_property(taxreturn=taxp, instance=%d)&quot; %  __i__">
+                                <Substitution id="Sn__i__316008" value_calc="taxp_addr = &quot;&quot;&#10;&#10;if taxp.PRWS_APT__i__.str() != &quot;&quot;:&#10;    taxp_addr = taxp_addr + taxp.PRWS_APT__i__.str() + &quot;-&quot;&#10;if taxp.PRWS_NUM__i__.str() != &quot;&quot;:&#10;    taxp_addr = taxp_addr + taxp.PRWS_NUM__i__.str() + &quot; &quot;&#10;if taxp.PRWS_ADDR__i__.str() != &quot;&quot;:&#10;    taxp_addr = taxp_addr + taxp.PRWS_ADDR__i__.str() + &quot; &quot;&#10;if taxp.PRWS_LOT__i__.str() != &quot;&quot;:&#10;    taxp_addr = taxp_addr + taxp.PRWS_LOT__i__.str()&#10;&#10;return taxp_addr"/>
+                            </Link>
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn14__i__100" width="20"></Column>
+                <Column align="left" id="Cn__i__316003" width="100">
+                    <Note id="Ne__i__316007">
+                        <Blurb id="Bb__i__316008">
+                            <Link id="Lk__i__316039"
+                                target_calc="return &quot;interview|i_pr_edit_property(taxreturn=taxp, instance=%d)&quot; %  __i__">
+                                <Substitution id="Sn__i__316009" value_calc="if taxp.PRWS_DEATH_Y__i__.val() == 1 and taxp.PRWS_DEATH_N__i__.val() == 0:&#10;	return format_dac(taxp.T1255_9954[__i__ - 1].val())&#10;else:&#10;	return format_dac(taxp.T2091_9954[__i__ - 1].val())"/>
+                            </Link>
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn15__i__100" width="10"></Column>
+                <Column id="Cn16__i__100" align="left" width="100">
+                    <Note id="Ne__i__316008">
+                        <Blurb id="Bb__i__316009">
+                            <Link id="Lk__i__316040"
+                                target_calc="return &quot;interview|i_pr_edit_property(taxreturn=taxp, instance=%d)&quot; %  __i__">
+                                <Substitution id="Sn__i__316010" value_calc="if taxp.PRWS_DEATH_Y__i__.val() == 1 and taxp.PRWS_DEATH_N__i__.val() == 0:&#10;	return format_dac(taxp.T1255_56[__i__ - 1].val())&#10;else:&#10;	return format_dac(taxp.T2091_56[__i__ - 1].val())"/>
+                            </Link>
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn17__i__100" width="10"></Column>
+                <Column id="Cn18__i__100" visible_calc="return is_pq()" align="left" width="100">
+                    <Note id="Ne__i__316009">
+                        <Blurb id="Bb__i__316010">
+                            <Link id="Lk__i__316041"
+                                target_calc="return &quot;interview|i_pr_edit_property(taxreturn=taxp, instance=%d)&quot; %  __i__">
+                                <Substitution id="Sn__i__316011" value_calc="return format_dac(taxp.TP274_109[__i__ - 1].val())"/>
+                            </Link>
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn19__i__100" width="100" visible_calc="return not is_pq()"></Column>
+                <Column id="Cn20__i__100" width="10"></Column>
+                <Column id="Cn21__i__100" align="left" width="100">
+                    <Note id="Ne__i__316010">
+                        <Blurb id="Bb__i__316011">
+                            <Link id="Lk__i__316042"
+                                target_calc="return &quot;interview|i_pr_edit_property(taxreturn=taxp, instance=%d)&quot; %  __i__"
+                                >
+                                Edit
+                            </Link> / 
+                            <Link id="Lk1__i__87665" target_calc="return &quot;interview|i_pr_entry_deleteyn(taxreturn=taxp, whichVal=__i__)&quot;">
+                                Delete
+                            </Link>
+                        </Blurb>
+                    </Note>
+                </Column>
+            </Row>
+            <Row id="Rw5" visible_calc="taxp_addr1 = &quot;&quot;&#10;taxp_addr2 = &quot;&quot;&#10;taxp_addr3 = &quot;&quot;&#10;&#10;if taxp.PRWS_APT1.str() != &quot;&quot;:&#10;    taxp_addr1 = taxp_addr1 + taxp.PRWS_APT1.str()&#10;if taxp.PRWS_NUM1.str() != &quot;&quot;:&#10;    taxp_addr1 = taxp_addr1 + &quot;-&quot; + taxp.PRWS_NUM1.str()&#10;if taxp.PRWS_ADDR1.str() != &quot;&quot;:&#10;    taxp_addr1 = taxp_addr1 + &quot; &quot; + taxp.PRWS_ADDR1.str()&#10;if taxp.PRWS_LOT1.str() != &quot;&quot;:&#10;    taxp_addr1 = taxp_addr1 + &quot; &quot; + taxp.PRWS_LOT1.str()&#10;&#10;if taxp.PRWS_APT2.str() != &quot;&quot;:&#10;    taxp_addr2 = taxp_addr2 + taxp.PRWS_APT2.str()&#10;if taxp.PRWS_NUM2.str() != &quot;&quot;:&#10;    taxp_addr2 = taxp_addr2 + &quot;-&quot; + taxp.PRWS_NUM2.str()&#10;if taxp.PRWS_ADDR2.str() != &quot;&quot;:&#10;    taxp_addr2 = taxp_addr2 + &quot; &quot; + taxp.PRWS_ADDR2.str()&#10;if taxp.PRWS_LOT2.str() != &quot;&quot;:&#10;    taxp_addr2 = taxp_addr2 + &quot; &quot; + taxp.PRWS_LOT2.str()&#10;&#10;if taxp.PRWS_APT3.str() != &quot;&quot;:&#10;    taxp_addr3 = taxp_addr3 + taxp.PRWS_APT3.str()&#10;if taxp.PRWS_NUM3.str() != &quot;&quot;:&#10;    taxp_addr3 = taxp_addr3 + &quot;-&quot; + taxp.PRWS_NUM3.str()&#10;if taxp.PRWS_ADDR3.str() != &quot;&quot;:&#10;    taxp_addr3 = taxp_addr3 + &quot; &quot; + taxp.PRWS_ADDR3.str()&#10;if taxp.PRWS_LOT3.str() != &quot;&quot;:&#10;    taxp_addr3 = taxp_addr3 + &quot; &quot; + taxp.PRWS_LOT3.str()&#10;&#10;if (__i__ == 4) and (taxp_addr1 or taxp_addr2 or taxp_addr3):&#10;    return 1&#10;else:&#10;    return 0" style="css-style|border-top: 1px solid #000">
+                <Column id="Cn22" align="right" width="150">
+                    <Note id="Ne7">
+                        <Blurb id="Bb8">
+                            <Strong id="Sg1">
+                                Total:
+                            </Strong>
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn23" width="20"></Column>
+                <Column id="Cn24" align="left" width="100">
+                    <Note id="Ne8">
+                        <Blurb id="Bb9">
+                            <Strong id="Sg2">
+                                <Substitution id="Sn2" value_calc="total=0&#10;if taxp.PRWS_DEATH_Y1.val() == 1 and taxp.PRWS_DEATH_N1.val() == 0:&#10;	total = total + taxp.T1255_9954[0].val()&#10;else:&#10;	total = total + taxp.T2091_9954[0].val()&#10;if taxp.PRWS_DEATH_Y2.val() == 1 and taxp.PRWS_DEATH_N2.val() == 0:&#10;	total = total + taxp.T1255_9954[1].val()&#10;else:&#10;	total = total + taxp.T2091_9954[1].val()&#10;if taxp.PRWS_DEATH_Y3.val() == 1 and taxp.PRWS_DEATH_N3.val() == 0:&#10;	total = total + taxp.T1255_9954[2].val()&#10;else:&#10;	total = total + taxp.T2091_9954[2].val()&#10;&#10;return tax.dac_to_a(total)"/>
+                            </Strong>
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn25" width="10"></Column>
+                <Column id="Cn26" align="left" width="100">
+                    <Note id="Ne9">
+                        <Blurb id="Bb10">
+                            <Strong id="Sg3">
+                                <Substitution id="Sn3" value_calc="total=0&#10;if taxp.PRWS_DEATH_Y1.val() == 1 and taxp.PRWS_DEATH_N1.val() == 0:&#10;	total = total + taxp.T1255_56[0].val()&#10;else:&#10;	total = total + taxp.T2091_56[0].val()&#10;if taxp.PRWS_DEATH_Y2.val() == 1 and taxp.PRWS_DEATH_N2.val() == 0:&#10;	total = total + taxp.T1255_56[1].val()&#10;else:&#10;	total = total + taxp.T2091_56[1].val()&#10;if taxp.PRWS_DEATH_Y3.val() == 1 and taxp.PRWS_DEATH_N3.val() == 0:&#10;	total = total + taxp.T1255_56[2].val()&#10;else:&#10;	total = total + taxp.T2091_56[2].val()&#10;&#10;return tax.dac_to_a(total)"/>
+                            </Strong>
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn27" width="10"></Column>
+                <Column id="Cn28" align="left" visible_calc="return is_pq()" width="100">
+                    <Note id="Ne10">
+                        <Blurb id="Bb11">
+                            <Strong id="Sg4">
+                                <Substitution id="Sn4" value_calc="return tax.dac_to_a(taxp.TP274_109[0].val() + taxp.TP274_109[1].val() + taxp.TP274_109[2].val())"/>
+                            </Strong>
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn29" width="100" visible_calc="return not is_pq()"></Column>
+                <Column id="Cn30" width="10"></Column>
+                <Column id="Cn31" width="100"></Column>
+            </Row>
+        </TableBody>
+    </Table>
+    
+    <!-- Start of spouse summary -->
+    <Table id="Te3" frame="off" grid="off" width="600" visible_calc="return is_dual()">
+        <TableHeader id="Tr2" visible_calc="return is_dual()">
+            <Row id="Rw6" height="50">
+                <Column id="Cn32" col_span="9" width="600"></Column>
+            </Row>
+            <Row id="Rw7">
+                <Column id="Cn33" align="left" width="150">
+                    <Note id="Ne11">
+                        <Blurb id="Bb12">
+                            Summary for 
+                            <Substitution id="Sn5" value_calc="return tax.get_taxpayer_name(sp)"/>
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn34" width="20"></Column>
+                <Column id="Cn35" align="left" width="100">
+                    <Note id="Ne12">
+                        <Blurb id="Bb13">
+                            Proceeds
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn36" width="10"></Column>
+                <Column id="Cn37" align="left" width="100">
+                    <Note id="Ne13">
+                        <Blurb id="Bb14">
+                            Federal capital gains
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn38" width="10"></Column>
+                <Column id="Cn39" align="left" visible_calc="return is_pq()" width="100">
+                    <Note id="Ne14">
+                        <Blurb id="Bb15">
+                            Québec capital gains
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn40" width="100" visible_calc="return not is_pq()"></Column>
+                <Column id="Cn41" width="10"></Column>
+                <Column id="Cn42" width="100"></Column>
+            </Row>
+            <Row id="Rw8" height="20">
+                <Column id="Cn43" col_span="9" width="600"></Column>
+            </Row>
+            <Row id="Rw9" background_colour="#F0F0F0" height="30"
+                visible_calc="sp_addr1 = &quot;&quot;&#10;sp_addr2 = &quot;&quot;&#10;sp_addr3 = &quot;&quot;&#10;&#10;if sp.PRWS_APT1.str() != &quot;&quot;:&#10;    sp_addr1 = sp_addr1 + sp.PRWS_APT1.str()&#10;if sp.PRWS_NUM1.str() != &quot;&quot;:&#10;    sp_addr1 = sp_addr1 + &quot;-&quot; + sp.PRWS_NUM1.str()&#10;if sp.PRWS_ADDR1.str() != &quot;&quot;:&#10;    sp_addr1 = sp_addr1 + &quot; &quot; + sp.PRWS_ADDR1.str()&#10;if sp.PRWS_LOT1.str() != &quot;&quot;:&#10;    sp_addr1 = sp_addr1 + &quot; &quot; + sp.PRWS_LOT1.str()&#10;&#10;if sp.PRWS_APT2.str() != &quot;&quot;:&#10;    sp_addr2 = sp_addr2 + sp.PRWS_APT2.str()&#10;if sp.PRWS_NUM2.str() != &quot;&quot;:&#10;    sp_addr2 = sp_addr2 + &quot;-&quot; + sp.PRWS_NUM2.str()&#10;if sp.PRWS_ADDR2.str() != &quot;&quot;:&#10;    sp_addr2 = sp_addr2 + &quot; &quot; + sp.PRWS_ADDR2.str()&#10;if sp.PRWS_LOT2.str() != &quot;&quot;:&#10;    sp_addr2 = sp_addr2 + &quot; &quot; + sp.PRWS_LOT2.str()&#10;&#10;if sp.PRWS_APT3.str() != &quot;&quot;:&#10;    sp_addr3 = sp_addr3 + sp.PRWS_APT3.str()&#10;if sp.PRWS_NUM3.str() != &quot;&quot;:&#10;    sp_addr3 = sp_addr3 + &quot;-&quot; + sp.PRWS_NUM3.str()&#10;if sp.PRWS_ADDR3.str() != &quot;&quot;:&#10;    sp_addr3 = sp_addr3 + &quot; &quot; + sp.PRWS_ADDR3.str()&#10;if sp.PRWS_LOT3.str() != &quot;&quot;:&#10;    sp_addr3 = sp_addr3 + &quot; &quot; + sp.PRWS_LOT3.str()&#10;&#10;if sp_addr1 or sp_addr2 or sp_addr3:&#10;    return 0&#10;else:&#10;    return 1 ">
+                <Column id="Cn44" col_span="9" align="left" width="600">
+                    <Note id="Ne15">
+                        <Blurb id="Bb16" style="css-style| padding-left: 20px">
+                            No properties entered
+                        </Blurb>
+                    </Note>
+                </Column>
+            </Row>
+        </TableHeader>
+        <TableBody id="Ty2" greenbar_size="1" allow_selection="no" iterator="__i__" limit="5" start="1">
+            <Row id="Rw__i__87328" visible_calc="if __i__ &lt; 4 and (sp.PRWS_ADDR__i__.str() or sp.PRWS_LOT__i__.str() or sp.T2091_9954[__i__ - 1].val()!=0 or sp.PRWS_ACQYR__i__.val() != 0):&#10; return 1&#10;else:&#10; return 0 ">
+                <Column align="left" id="Cn__i__1234" width="150">
+                    <Note id="Ne__i__1234">
+                        <Blurb id="Bb__i__1234">
+                            <Link id="Lk__i__1234"
+                                target_calc="return &quot;interview|i_pr_edit_property(taxreturn=sp, instance=%d)&quot; %  __i__">
+                                <Substitution id="Sn__i__1234" value_calc="sp_addr = &quot;&quot;&#10;&#10;if sp.PRWS_APT__i__.str() != &quot;&quot;:&#10;    sp_addr = sp_addr + sp.PRWS_APT__i__.str() + &quot;-&quot;&#10;if sp.PRWS_NUM__i__.str() != &quot;&quot;:&#10;    sp_addr = sp_addr + sp.PRWS_NUM__i__.str() + &quot; &quot;&#10;if sp.PRWS_ADDR__i__.str() != &quot;&quot;:&#10;    sp_addr = sp_addr + sp.PRWS_ADDR__i__.str() + &quot; &quot;&#10;if sp.PRWS_LOT__i__.str() != &quot;&quot;:&#10;    sp_addr = sp_addr + sp.PRWS_LOT__i__.str()&#10;&#10;return sp_addr"/>
+                            </Link>
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn45__i__100" width="20"></Column>
+                <Column align="left" id="Cn__i__1235" width="100">
+                    <Note id="Ne__i__1235">
+                        <Blurb id="Bb__i__1235">
+                            <Link id="Lk__i__1235"
+                                target_calc="return &quot;interview|i_pr_edit_property(taxreturn=sp, instance=%d)&quot; %  __i__">
+                                <Substitution id="Sn__i__1235" value_calc="if sp.PRWS_DEATH_Y__i__.val() == 1 and sp.PRWS_DEATH_N__i__.val() == 0:&#10;	return format_dac(sp.T1255_9954[__i__ - 1].val())&#10;else:&#10;	return format_dac(sp.T2091_9954[__i__ - 1].val())"/>
+                            </Link>
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn46__i__100" width="10"></Column>
+                <Column id="Cn47__i__100" align="left" width="100">
+                    <Note id="Ne__i__1236">
+                        <Blurb id="Bb__i__1236">
+                            <Link id="Lk__i__1236"
+                                target_calc="return &quot;interview|i_pr_edit_property(taxreturn=sp, instance=%d)&quot; %  __i__">
+                                <Substitution id="Sn__i__1236" value_calc="if sp.PRWS_DEATH_Y__i__.val() == 1 and sp.PRWS_DEATH_N__i__.val() == 0:&#10;	return format_dac(sp.T1255_56[__i__ - 1].val())&#10;else:&#10;	return format_dac(sp.T2091_56[__i__ - 1].val())"/>
+                            </Link>
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn48__i__100" width="10"></Column>
+                <Column id="Cn49__i__100" visible_calc="return is_pq()" align="left" width="100">
+                    <Note id="Ne__i__1237">
+                        <Blurb id="Bb__i__1237">
+                            <Link id="Lk__i__1237"
+                                target_calc="return &quot;interview|i_pr_edit_property(taxreturn=sp, instance=%d)&quot; %  __i__">
+                                <Substitution id="Sn__i__1237" value_calc="return format_dac(sp.TP274_109[__i__ - 1].val())"/>
+                            </Link>
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn50__i__100" width="100" visible_calc="return not is_pq()"></Column>
+                <Column id="Cn51__i__100" width="10"></Column>
+                <Column id="Cn52__i__100" align="left" width="100">
+                    <Note id="Ne__i__1238">
+                        <Blurb id="Bb__i__1238">
+                            <Link id="Lk__i__1238"
+                                target_calc="return &quot;interview|i_pr_edit_property(taxreturn=sp, instance=%d)&quot; %  __i__">
+                                Edit
+                            </Link> / 
+                            <Link id="Lk__i__1239" target_calc="return &quot;interview|i_pr_entry_deleteyn(taxreturn=sp, whichVal=__i__)&quot;">
+                                Delete
+                            </Link>
+                        </Blurb>
+                    </Note>
+                </Column>
+            </Row>
+            <Row id="Rw10" visible_calc="sp_addr1 = &quot;&quot;&#10;sp_addr2 = &quot;&quot;&#10;sp_addr3 = &quot;&quot;&#10;&#10;if sp.PRWS_APT1.str() != &quot;&quot;:&#10;    sp_addr1 = sp_addr1 + sp.PRWS_APT1.str()&#10;if sp.PRWS_NUM1.str() != &quot;&quot;:&#10;    sp_addr1 = sp_addr1 + &quot;-&quot; + sp.PRWS_NUM1.str()&#10;if sp.PRWS_ADDR1.str() != &quot;&quot;:&#10;    sp_addr1 = sp_addr1 + &quot; &quot; + sp.PRWS_ADDR1.str()&#10;if sp.PRWS_LOT1.str() != &quot;&quot;:&#10;    sp_addr1 = sp_addr1 + &quot; &quot; + sp.PRWS_LOT1.str()&#10;&#10;if sp.PRWS_APT2.str() != &quot;&quot;:&#10;    sp_addr2 = sp_addr2 + sp.PRWS_APT2.str()&#10;if sp.PRWS_NUM2.str() != &quot;&quot;:&#10;    sp_addr2 = sp_addr2 + &quot;-&quot; + sp.PRWS_NUM2.str()&#10;if sp.PRWS_ADDR2.str() != &quot;&quot;:&#10;    sp_addr2 = sp_addr2 + &quot; &quot; + sp.PRWS_ADDR2.str()&#10;if sp.PRWS_LOT2.str() != &quot;&quot;:&#10;    sp_addr2 = sp_addr2 + &quot; &quot; + sp.PRWS_LOT2.str()&#10;&#10;if sp.PRWS_APT3.str() != &quot;&quot;:&#10;    sp_addr3 = sp_addr3 + sp.PRWS_APT3.str()&#10;if sp.PRWS_NUM3.str() != &quot;&quot;:&#10;    sp_addr3 = sp_addr3 + &quot;-&quot; + sp.PRWS_NUM3.str()&#10;if sp.PRWS_ADDR3.str() != &quot;&quot;:&#10;    sp_addr3 = sp_addr3 + &quot; &quot; + sp.PRWS_ADDR3.str()&#10;if sp.PRWS_LOT3.str() != &quot;&quot;:&#10;    sp_addr3 = sp_addr3 + &quot; &quot; + sp.PRWS_LOT3.str()&#10;&#10;if __i__ == 4 and (sp_addr1 or sp_addr2 or sp_addr3):&#10; return 1&#10;else:&#10; return 0" style="css-style|border-top: 1px solid #000">
+                <Column id="Cn53" align="right" width="150">
+                    <Note id="Ne16">
+                        <Blurb id="Bb17">
+                            <Strong id="Sg5">
+                                Total:
+                            </Strong>
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn54" width="20"></Column>
+                <Column id="Cn55" align="left" width="100">
+                    <Note id="Ne17">
+                        <Blurb id="Bb18">
+                            <Strong id="Sg6">
+                                <Substitution id="Sn6" value_calc="total=0&#10;if sp.PRWS_DEATH_Y1.val() == 1 and sp.PRWS_DEATH_N1.val() == 0:&#10;	total = total + sp.T1255_9954[0].val()&#10;else:&#10;	total = total + sp.T2091_9954[0].val()&#10;if sp.PRWS_DEATH_Y2.val() == 1 and sp.PRWS_DEATH_N2.val() == 0:&#10;	total = total + sp.T1255_9954[1].val()&#10;else:&#10;	total = total + sp.T2091_9954[1].val()&#10;if sp.PRWS_DEATH_Y3.val() == 1 and sp.PRWS_DEATH_N3.val() == 0:&#10;	total = total + sp.T1255_9954[2].val()&#10;else:&#10;	total = total + sp.T2091_9954[2].val()&#10;&#10;return tax.dac_to_a(total)"/>
+                            </Strong>
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn56" width="10"></Column>
+                <Column id="Cn57" align="left" width="100">
+                    <Note id="Ne18">
+                        <Blurb id="Bb19">
+                            <Strong id="Sg7">
+                                <Substitution id="Sn7" value_calc="total=0&#10;if sp.PRWS_DEATH_Y1.val() == 1 and sp.PRWS_DEATH_N1.val() == 0:&#10;	total = total + sp.T1255_56[0].val()&#10;else:&#10;	total = total + sp.T2091_56[0].val()&#10;if sp.PRWS_DEATH_Y2.val() == 1 and sp.PRWS_DEATH_N2.val() == 0:&#10;	total = total + sp.T1255_56[1].val()&#10;else:&#10;	total = total + sp.T2091_56[1].val()&#10;if sp.PRWS_DEATH_Y3.val() == 1 and sp.PRWS_DEATH_N3.val() == 0:&#10;	total = total + sp.T1255_56[2].val()&#10;else:&#10;	total = total + sp.T2091_56[2].val()&#10;&#10;return tax.dac_to_a(total)"/>
+                            </Strong>
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn58" width="10"></Column>
+                <Column id="Cn59" align="left" visible_calc="return is_pq()" width="100">
+                    <Note id="Ne19">
+                        <Blurb id="Bb20">
+                            <Strong id="Sg8">
+                                <Substitution id="Sn8" value_calc="return tax.dac_to_a(sp.TP274_109[0].val() + sp.TP274_109[1].val() + sp.TP274_109[2].val())"/>
+                            </Strong>
+                        </Blurb>
+                    </Note>
+                </Column>
+                <Column id="Cn60" width="100" visible_calc="return not is_pq()"></Column>
+                <Column id="Cn61" width="10"></Column>
+                <Column id="Cn62" width="100"></Column>
+            </Row>
+        </TableBody>
+    </Table>
+    
+    <Button id="Bn1" target="back">
+        <Blurb id="Bb24">Back</Blurb>
+    </Button>
+    
+    <Button id="Bn5" visible_calc="taxp_addr1 = &quot;&quot;&#10;taxp_addr2 = &quot;&quot;&#10;taxp_addr3 = &quot;&quot;&#10;sp_addr1 = &quot;&quot;&#10;sp_addr2 = &quot;&quot;&#10;sp_addr3 = &quot;&quot;&#10;&#10;if taxp.PRWS_APT1.str() != &quot;&quot;:&#10;    taxp_addr1 = taxp_addr1 + taxp.PRWS_APT1.str()&#10;if taxp.PRWS_NUM1.str() != &quot;&quot;:&#10;    taxp_addr1 = taxp_addr1 + &quot;-&quot; + taxp.PRWS_NUM1.str()&#10;if taxp.PRWS_ADDR1.str() != &quot;&quot;:&#10;    taxp_addr1 = taxp_addr1 + &quot; &quot; + taxp.PRWS_ADDR1.str()&#10;if taxp.PRWS_LOT1.str() != &quot;&quot;:&#10;    taxp_addr1 = taxp_addr1 + &quot; &quot; + taxp.PRWS_LOT1.str()&#10;&#10;if taxp.PRWS_APT2.str() != &quot;&quot;:&#10;    taxp_addr2 = taxp_addr2 + taxp.PRWS_APT2.str()&#10;if taxp.PRWS_NUM2.str() != &quot;&quot;:&#10;    taxp_addr2 = taxp_addr2 + &quot;-&quot; + taxp.PRWS_NUM2.str()&#10;if taxp.PRWS_ADDR2.str() != &quot;&quot;:&#10;    taxp_addr2 = taxp_addr2 + &quot; &quot; + taxp.PRWS_ADDR2.str()&#10;if taxp.PRWS_LOT2.str() != &quot;&quot;:&#10;    taxp_addr2 = taxp_addr2 + &quot; &quot; + taxp.PRWS_LOT2.str()&#10;&#10;if taxp.PRWS_APT3.str() != &quot;&quot;:&#10;    taxp_addr3 = taxp_addr3 + taxp.PRWS_APT3.str()&#10;if taxp.PRWS_NUM3.str() != &quot;&quot;:&#10;    taxp_addr3 = taxp_addr3 + &quot;-&quot; + taxp.PRWS_NUM3.str()&#10;if taxp.PRWS_ADDR3.str() != &quot;&quot;:&#10;    taxp_addr3 = taxp_addr3 + &quot; &quot; + taxp.PRWS_ADDR3.str()&#10;if taxp.PRWS_LOT3.str() != &quot;&quot;:&#10;    taxp_addr3 = taxp_addr3 + &quot; &quot; + taxp.PRWS_LOT3.str()&#10;&#10;&#10;if is_dual():&#10;    if sp.PRWS_APT1.str() != &quot;&quot;:&#10;        sp_addr1 = sp_addr1 + sp.PRWS_APT1.str()&#10;    if sp.PRWS_NUM1.str() != &quot;&quot;:&#10;        sp_addr1 = sp_addr1 + &quot;-&quot; + sp.PRWS_NUM1.str()&#10;    if sp.PRWS_ADDR1.str() != &quot;&quot;:&#10;        sp_addr1 = sp_addr1 + &quot; &quot; + sp.PRWS_ADDR1.str()&#10;    if sp.PRWS_LOT1.str() != &quot;&quot;:&#10;        sp_addr1 = sp_addr1 + &quot; &quot; + sp.PRWS_LOT1.str()&#10;&#10;    if sp.PRWS_APT2.str() != &quot;&quot;:&#10;        sp_addr2 = sp_addr2 + sp.PRWS_APT2.str()&#10;    if sp.PRWS_NUM2.str() != &quot;&quot;:&#10;        sp_addr2 = sp_addr2 + &quot;-&quot; + sp.PRWS_NUM2.str()&#10;    if sp.PRWS_ADDR2.str() != &quot;&quot;:&#10;        sp_addr2 = sp_addr2 + &quot; &quot; + sp.PRWS_ADDR2.str()&#10;    if sp.PRWS_LOT2.str() != &quot;&quot;:&#10;        sp_addr2 = sp_addr2 + &quot; &quot; + sp.PRWS_LOT2.str()&#10;&#10;    if sp.PRWS_APT3.str() != &quot;&quot;:&#10;        sp_addr3 = sp_addr3 + sp.PRWS_APT3.str()&#10;    if sp.PRWS_NUM3.str() != &quot;&quot;:&#10;        sp_addr3 = sp_addr3 + &quot;-&quot; + sp.PRWS_NUM3.str()&#10;    if sp.PRWS_ADDR3.str() != &quot;&quot;:&#10;        sp_addr3 = sp_addr3 + &quot; &quot; + sp.PRWS_ADDR3.str()&#10;    if sp.PRWS_LOT3.str() != &quot;&quot;:&#10;        sp_addr3 = sp_addr3 + &quot; &quot; + sp.PRWS_LOT3.str()&#10;&#10;if taxp_addr1 != &quot;&quot; and taxp_addr2 != &quot;&quot; and taxp_addr3 != &quot;&quot;:&#10;    if is_dual():&#10;        if sp_addr1 != &quot;&quot; and sp_addr2 != &quot;&quot; and sp_addr3 != &quot;&quot;:&#10;            return 0&#10;        else:&#10;            return 1&#10;    else:&#10;        return 0&#10;else:&#10;    return 1"
+     target_calc="tds.taxp_pr_instance.set(0)&#10;tds.SP_DISPOSE.set(0)&#10;tds.SP_DISPOSE_NO.set(0)&#10;tds.PR_DISPOSE_TP.set(0)&#10;tds.PR_DISPOSE_SP.set(0)&#10;tds.PR_DISPOSE_BOTH.set(0)&#10;tds.TAXP_ADD_PROP.set(0)&#10;tds.SP_ADD_PROP.set(0)&#10;&#10;if is_dual():&#10;	return &apos;step|s_pr_sp_dispose(prevStep=&quot;%s&quot;)&apos; % (&apos;s_pr_summary&apos;)&#10;else:&#10;	tds.TAXP_ADD_PROP.set(1)&#10;	return &quot;step|s_taxp_pr_add_property_redirect&quot;">
+        <Blurb id="Bb28">Add property</Blurb>
+    </Button>
+    
+    <Button id="Bn4" target_calc="if tax.is_module(tax.Module.Basic) or tax.is_module(tax.Module.FormsOnly):&#10;	return &apos;step|s_alimony_income&apos;&#10;else:&#10;	return &quot;step|s_rental_yn&quot;">
+        <Blurb id="Bb27">Continue</Blurb>
+    </Button>
+    
+</Step>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE Step  SYSTEM "http://qtdev.ca.intuit.com/dtd/Step.dtd">
+<Step id="s_pr_sp_transfer_1" redirect_calc="if interview.taxreturn.get()==taxp and taxp.PRWS_SP_Y1.val()==1:&#10;	tds.TAXP_PRWS_DISPOSE_OTH_1.set(1)&#10;	tds.TAXP_PRWS_DISPOSE_SP_1.set(0)&#10;	tds.TAXP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;	taxp.PRWS_ELECT_Y1.set(1)&#10;	taxp.PRWS_ELECT_N1.set(0)&#10;	taxp.PRWS_SP_PERC1.set(0)&#10;	return &quot;interview|i_pr_designation(taxreturn=taxp,instance=0,isVal=0)&quot;&#10;elif is_dual() and interview.taxreturn.get()==sp and sp.PRWS_SP_Y1.val()==1:&#10;	tds.SP_PRWS_DISPOSE_OTH_1.set(1)&#10;	tds.SP_PRWS_DISPOSE_SP_1.set(0)&#10;	tds.SP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;	sp.PRWS_ELECT_Y1.set(1)&#10;	sp.PRWS_ELECT_N1.set(0)&#10;	sp.PRWS_SP_PERC1.set(0)&#10;	return &quot;interview|i_pr_designation(taxreturn=sp,instance=0,isVal=0)&quot;&#10;&#10;&#10;"
+    rebound_calc="if interviewState.curReturn.str() == &quot;summary&quot;:&#10;	return &quot;return|summary&quot;&#10;else:&#10;	return &quot;return|&quot;"
+ exit_calc="if formlet.has_key(&quot;dispose&quot;):&#10;	if formlet.dispose.str()==&quot;dispose_sp&quot;:&#10;		interview.taxreturn.get().PRWS_SP_PERC1.set(&quot;100&quot;)&#10;	elif formlet.dispose.str()==&quot;dispose_oth&quot;:&#10;		interview.taxreturn.get().PRWS_ELECT_Y1.set(1)&#10;		interview.taxreturn.get().PRWS_ELECT_N1.set(0)&#10;		interview.taxreturn.get().PRWS_SP_PERC1.set(0)&#10;">
+    
+    <Title id="Te1">
+        <Blurb id="Bb1">
+            Disposition to a spouse or partner
+        </Blurb>
+    </Title>
+                
+    <GroupLayout id="Gt1">
+        <Row id="Rw1" height="5">
+            <Column id="Cn1"></Column>
+        </Row>
+        <Row id="Rw2">
+            <Column id="Cn2">
+                <Note id="Ne1">
+                    <Blurb id="Bb2">
+                        <Strong id="Sg1">
+                            <Substitution id="Sn1" value_calc="return tax.get_taxpayer_name(interview.taxreturn.get())"/>,
+                        </Strong>
+                        who are you transferring the property to?
+                    </Blurb>
+                </Note>
+            </Column>
+        </Row>
+        <Row id="Rw3">
+            <Column id="Cn3">
+                <Input id="It1">
+                    <RadioButtonsGroup id="dispose" layout="in_same_column" qt_onclick_script="if ($(&apos;#dispose_sp&apos;).is(&apos;:checked&apos;))&#10;{&#10;	$(&apos;#DISPOSE_PERCENT&apos;).css(&apos;display&apos;, &apos;none&apos;);&#10;	$(&apos;#AUTOMATIC_ROLLOVER&apos;).css(&apos;display&apos;, &apos;block&apos;);&#10;}&#10;else if ($(&apos;#dispose_oth&apos;).is(&apos;:checked&apos;))&#10;{&#10;	$(&apos;#DISPOSE_PERCENT&apos;).css(&apos;display&apos;, &apos;none&apos;);&#10;	$(&apos;#AUTOMATIC_ROLLOVER&apos;).css(&apos;display&apos;, &apos;none&apos;);&#10;}&#10;if ($(&apos;#dispose_sp_oth&apos;).is(&apos;:checked&apos;))&#10;{&#10;	$(&apos;#AUTOMATIC_ROLLOVER&apos;).css(&apos;display&apos;, &apos;block&apos;);&#10;	if ($(&apos;#rollover_no&apos;).is(&apos;:checked&apos;))&#10;	{&#10;		$(&apos;#DISPOSE_PERCENT&apos;).css(&apos;display&apos;, &apos;block&apos;);&#10;	}&#10;	else if ($(&apos;#rollover_yes&apos;).is(&apos;:checked&apos;))&#10;	{&#10;		$(&apos;#DISPOSE_PERCENT&apos;).css(&apos;display&apos;, &apos;none&apos;);&#10;	}&#10;}">
+                        <RadioButton id="dispose_sp">
+                            <InputLabel id="Il1" label_on="right">
+                                <Blurb id="Bb3">Spouse/partner only</Blurb>
+                            </InputLabel>
+                            <InputField id="Id1" type="radio" default_mapping="tds.PRWS_DISPOSE_SP_1"
+                            value_calc="if interview.taxreturn.get() == taxp:&#10;	return tds.TAXP_PRWS_DISPOSE_SP_1.val() == 1&#10;elif is_dual() and interview.taxreturn.get() == sp:&#10;	return tds.SP_PRWS_DISPOSE_SP_1.val() == 1"
+                                store_calc="if formlet.has_key(&quot;dispose&quot;):&#10;	if formlet.dispose.str() == &quot;dispose_sp&quot;:&#10;		if interview.taxreturn.get() == taxp:&#10;			tds.TAXP_PRWS_DISPOSE_SP_1.set(1)&#10;			tds.TAXP_PRWS_DISPOSE_OTH_1.set(0)&#10;			tds.TAXP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;		elif is_dual() and interview.taxreturn.get() == sp:&#10;			tds.SP_PRWS_DISPOSE_SP_1.set(1)&#10;			tds.SP_PRWS_DISPOSE_OTH_1.set(0)&#10;			tds.SP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;		interview.taxreturn.get().PRWS_DISPO_SPY1.set(1)&#10;		interview.taxreturn.get().PRWS_DISPO_SPN1.set(0)&#10;	elif formlet.dispose.str() == &quot;dispose_oth&quot;:&#10;		if interview.taxreturn.get() == taxp:&#10;			tds.TAXP_PRWS_DISPOSE_SP_1.set(0)&#10;			tds.TAXP_PRWS_DISPOSE_OTH_1.set(1)&#10;			tds.TAXP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;		elif is_dual() and interview.taxreturn.get() == sp:&#10;			tds.SP_PRWS_DISPOSE_SP_1.set(0)&#10;			tds.SP_PRWS_DISPOSE_OTH_1.set(1)&#10;			tds.SP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;		interview.taxreturn.get().PRWS_DISPO_SPY1.set(0)&#10;		interview.taxreturn.get().PRWS_DISPO_SPN1.set(1)&#10;	elif formlet.dispose.str() == &quot;dispose_sp_oth&quot;:&#10;		if interview.taxreturn.get() == taxp:&#10;			tds.TAXP_PRWS_DISPOSE_SP_1.set(0)&#10;			tds.TAXP_PRWS_DISPOSE_OTH_1.set(0)&#10;			tds.TAXP_PRWS_DISPOSE_SP_OTH_1.set(1)&#10;		elif is_dual() and interview.taxreturn.get() == sp:&#10;			tds.SP_PRWS_DISPOSE_SP_1.set(0)&#10;			tds.SP_PRWS_DISPOSE_OTH_1.set(0)&#10;			tds.SP_PRWS_DISPOSE_SP_OTH_1.set(1)&#10;		interview.taxreturn.get().PRWS_DISPO_SPY1.set(1)&#10;		interview.taxreturn.get().PRWS_DISPO_SPN1.set(0)&#10;	else:&#10;		if interview.taxreturn.get() == taxp:&#10;			tds.TAXP_PRWS_DISPOSE_SP_1.set(0)&#10;			tds.TAXP_PRWS_DISPOSE_OTH_1.set(0)&#10;			tds.TAXP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;		elif is_dual() and interview.taxreturn.get() == sp:&#10;			tds.SP_PRWS_DISPOSE_SP_1.set(0)&#10;			tds.SP_PRWS_DISPOSE_OTH_1.set(0)&#10;			tds.SP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;		interview.taxreturn.get().PRWS_DISPO_SPY1.set(0)&#10;		interview.taxreturn.get().PRWS_DISPO_SPN1.set(0)&#10;else:&#10;	if interview.taxreturn.get() == taxp:&#10;		tds.TAXP_PRWS_DISPOSE_SP_1.set(0)&#10;		tds.TAXP_PRWS_DISPOSE_OTH_1.set(0)&#10;		tds.TAXP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;	elif is_dual() and interview.taxreturn.get() == sp:&#10;		tds.SP_PRWS_DISPOSE_SP_1.set(0)&#10;		tds.SP_PRWS_DISPOSE_OTH_1.set(0)&#10;		tds.SP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;	interview.taxreturn.get().PRWS_DISPO_SPY1.set(0)&#10;	interview.taxreturn.get().PRWS_DISPO_SPN1.set(0)"/>
+                        </RadioButton>
+                        <RadioButton id="dispose_oth">
+                            <InputLabel id="Il2" label_on="right">
+                                <Blurb id="Bb4">Other</Blurb>
+                            </InputLabel>
+                            <InputField id="Id2" type="radio" default_mapping="tds.PRWS_DISPOSE_OTH_1"
+                            value_calc="if interview.taxreturn.get() == taxp:&#10;	return tds.TAXP_PRWS_DISPOSE_OTH_1.val() == 1&#10;elif is_dual() and interview.taxreturn.get() == sp:&#10;	return tds.SP_PRWS_DISPOSE_OTH_1.val() == 1"
+                                store_calc="if formlet.has_key(&quot;dispose&quot;):&#10;	if formlet.dispose.str() == &quot;dispose_sp&quot;:&#10;		if interview.taxreturn.get() == taxp:&#10;			tds.TAXP_PRWS_DISPOSE_SP_1.set(1)&#10;			tds.TAXP_PRWS_DISPOSE_OTH_1.set(0)&#10;			tds.TAXP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;		elif is_dual() and interview.taxreturn.get() == sp:&#10;			tds.SP_PRWS_DISPOSE_SP_1.set(1)&#10;			tds.SP_PRWS_DISPOSE_OTH_1.set(0)&#10;			tds.SP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;		interview.taxreturn.get().PRWS_DISPO_SPY1.set(1)&#10;		interview.taxreturn.get().PRWS_DISPO_SPN1.set(0)&#10;	elif formlet.dispose.str() == &quot;dispose_oth&quot;:&#10;		if interview.taxreturn.get() == taxp:&#10;			tds.TAXP_PRWS_DISPOSE_SP_1.set(0)&#10;			tds.TAXP_PRWS_DISPOSE_OTH_1.set(1)&#10;			tds.TAXP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;		elif is_dual() and interview.taxreturn.get() == sp:&#10;			tds.SP_PRWS_DISPOSE_SP_1.set(0)&#10;			tds.SP_PRWS_DISPOSE_OTH_1.set(1)&#10;			tds.SP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;		interview.taxreturn.get().PRWS_DISPO_SPY1.set(0)&#10;		interview.taxreturn.get().PRWS_DISPO_SPN1.set(1)&#10;	elif formlet.dispose.str() == &quot;dispose_sp_oth&quot;:&#10;		if interview.taxreturn.get() == taxp:&#10;			tds.TAXP_PRWS_DISPOSE_SP_1.set(0)&#10;			tds.TAXP_PRWS_DISPOSE_OTH_1.set(0)&#10;			tds.TAXP_PRWS_DISPOSE_SP_OTH_1.set(1)&#10;		elif is_dual() and interview.taxreturn.get() == sp:&#10;			tds.SP_PRWS_DISPOSE_SP_1.set(0)&#10;			tds.SP_PRWS_DISPOSE_OTH_1.set(0)&#10;			tds.SP_PRWS_DISPOSE_SP_OTH_1.set(1)&#10;		interview.taxreturn.get().PRWS_DISPO_SPY1.set(1)&#10;		interview.taxreturn.get().PRWS_DISPO_SPN1.set(0)&#10;	else:&#10;		if interview.taxreturn.get() == taxp:&#10;			tds.TAXP_PRWS_DISPOSE_SP_1.set(0)&#10;			tds.TAXP_PRWS_DISPOSE_OTH_1.set(0)&#10;			tds.TAXP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;		elif is_dual() and interview.taxreturn.get() == sp:&#10;			tds.SP_PRWS_DISPOSE_SP_1.set(0)&#10;			tds.SP_PRWS_DISPOSE_OTH_1.set(0)&#10;			tds.SP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;		interview.taxreturn.get().PRWS_DISPO_SPY1.set(0)&#10;		interview.taxreturn.get().PRWS_DISPO_SPN1.set(0)&#10;else:&#10;	if interview.taxreturn.get() == taxp:&#10;		tds.TAXP_PRWS_DISPOSE_SP_1.set(0)&#10;		tds.TAXP_PRWS_DISPOSE_OTH_1.set(0)&#10;		tds.TAXP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;	elif is_dual() and interview.taxreturn.get() == sp:&#10;		tds.SP_PRWS_DISPOSE_SP_1.set(0)&#10;		tds.SP_PRWS_DISPOSE_OTH_1.set(0)&#10;		tds.SP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;	interview.taxreturn.get().PRWS_DISPO_SPY1.set(0)&#10;	interview.taxreturn.get().PRWS_DISPO_SPN1.set(0)"/>
+                        </RadioButton>
+                        <RadioButton id="dispose_sp_oth">
+                            <InputLabel id="Il3" label_on="right">
+                                <Blurb id="Bb5">Spouse/partner and other</Blurb>
+                            </InputLabel>
+                            <InputField id="Id3" type="radio" default_mapping="tds.PRWS_DISPOSE_SP_OTH_1"
+                            value_calc="if interview.taxreturn.get() == taxp:&#10;	return tds.TAXP_PRWS_DISPOSE_SP_OTH_1.val() == 1&#10;elif is_dual() and interview.taxreturn.get() == sp:&#10;	return tds.SP_PRWS_DISPOSE_SP_OTH_1.val() == 1"
+                                store_calc="if formlet.has_key(&quot;dispose&quot;):&#10;	if formlet.dispose.str() == &quot;dispose_sp&quot;:&#10;		if interview.taxreturn.get() == taxp:&#10;			tds.TAXP_PRWS_DISPOSE_SP_1.set(1)&#10;			tds.TAXP_PRWS_DISPOSE_OTH_1.set(0)&#10;			tds.TAXP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;		elif is_dual() and interview.taxreturn.get() == sp:&#10;			tds.SP_PRWS_DISPOSE_SP_1.set(1)&#10;			tds.SP_PRWS_DISPOSE_OTH_1.set(0)&#10;			tds.SP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;		interview.taxreturn.get().PRWS_DISPO_SPY1.set(1)&#10;		interview.taxreturn.get().PRWS_DISPO_SPN1.set(0)&#10;	elif formlet.dispose.str() == &quot;dispose_oth&quot;:&#10;		if interview.taxreturn.get() == taxp:&#10;			tds.TAXP_PRWS_DISPOSE_SP_1.set(0)&#10;			tds.TAXP_PRWS_DISPOSE_OTH_1.set(1)&#10;			tds.TAXP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;		elif is_dual() and interview.taxreturn.get() == sp:&#10;			tds.SP_PRWS_DISPOSE_SP_1.set(0)&#10;			tds.SP_PRWS_DISPOSE_OTH_1.set(1)&#10;			tds.SP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;		interview.taxreturn.get().PRWS_DISPO_SPY1.set(0)&#10;		interview.taxreturn.get().PRWS_DISPO_SPN1.set(1)&#10;	elif formlet.dispose.str() == &quot;dispose_sp_oth&quot;:&#10;		if interview.taxreturn.get() == taxp:&#10;			tds.TAXP_PRWS_DISPOSE_SP_1.set(0)&#10;			tds.TAXP_PRWS_DISPOSE_OTH_1.set(0)&#10;			tds.TAXP_PRWS_DISPOSE_SP_OTH_1.set(1)&#10;		elif is_dual() and interview.taxreturn.get() == sp:&#10;			tds.SP_PRWS_DISPOSE_SP_1.set(0)&#10;			tds.SP_PRWS_DISPOSE_OTH_1.set(0)&#10;			tds.SP_PRWS_DISPOSE_SP_OTH_1.set(1)&#10;		interview.taxreturn.get().PRWS_DISPO_SPY1.set(1)&#10;		interview.taxreturn.get().PRWS_DISPO_SPN1.set(0)&#10;	else:&#10;		if interview.taxreturn.get() == taxp:&#10;			tds.TAXP_PRWS_DISPOSE_SP_1.set(0)&#10;			tds.TAXP_PRWS_DISPOSE_OTH_1.set(0)&#10;			tds.TAXP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;		elif is_dual() and interview.taxreturn.get() == sp:&#10;			tds.SP_PRWS_DISPOSE_SP_1.set(0)&#10;			tds.SP_PRWS_DISPOSE_OTH_1.set(0)&#10;			tds.SP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;		interview.taxreturn.get().PRWS_DISPO_SPY1.set(0)&#10;		interview.taxreturn.get().PRWS_DISPO_SPN1.set(0)&#10;else:&#10;	if interview.taxreturn.get() == taxp:&#10;		tds.TAXP_PRWS_DISPOSE_SP_1.set(0)&#10;		tds.TAXP_PRWS_DISPOSE_OTH_1.set(0)&#10;		tds.TAXP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;	elif is_dual() and interview.taxreturn.get() == sp:&#10;		tds.SP_PRWS_DISPOSE_SP_1.set(0)&#10;		tds.SP_PRWS_DISPOSE_OTH_1.set(0)&#10;		tds.SP_PRWS_DISPOSE_SP_OTH_1.set(0)&#10;	interview.taxreturn.get().PRWS_DISPO_SPY1.set(0)&#10;	interview.taxreturn.get().PRWS_DISPO_SPN1.set(0)"/>
+                        </RadioButton>
+                    </RadioButtonsGroup>
+                </Input>
+            </Column>
+        </Row>
+        <Row id="Rw4" height="20">
+            <Column id="Cn4"></Column>
+        </Row>
+        <Row id="Rw5">
+            <Column id="Cn5">
+                <Note id="Ne2">
+                    <Blurb id="Bb6">
+                        <Strong id="Sg2">Note: </Strong>
+                        Your spouse/partner in this instance can also include your former spouse/partner only 
+                        if the transfer of property was due to a marital relationship breakdown.
+                    </Blurb>
+                </Note>
+            </Column>
+        </Row>
+        <Row id="Rw6" height="40">
+            <Column id="Cn6"></Column>
+        </Row>
+    </GroupLayout>
+    
+    <GroupLayout id="AUTOMATIC_ROLLOVER" style_calc="if (interview.taxreturn.get().PRWS_DISPO_SPY1.val() == 1):&#10;	return &quot;css-style|display:block&quot;&#10;else:&#10;	return &quot;css-style|display:none&quot;">
+        <Row id="Rw7">
+            <Column id="Cn7">
+                <Note id="Ne3">
+                    <Blurb id="Bb7">
+                        An automatic rollover applies when a property is transferred to a spouse/partner. Are you 
+                        <Strong id="Sg3">
+                            <Link id="Lk1" target="definition|d_princ_roll">
+                                electing out of the automatic rollover?
+                            </Link>
+                        </Strong>
+                    </Blurb>
+                </Note>
+            </Column>
+        </Row>
+        <Row id="Rw8">
+            <Column id="Cn8">
+                <Input id="It2">
+                    <RadioButtonsGroup id="rollover" layout="in_same_column" qt_onclick_script="if ($(&apos;#rollover_yes&apos;).is(&apos;:checked&apos;)) {&#10;	$(&apos;#DISPOSE_PERCENT&apos;).css(&apos;display&apos;, &apos;none&apos;);&#10;}&#10;else if ($(&apos;#rollover_no&apos;).is(&apos;:checked&apos;)) {&#10;	if ($(&apos;#dispose_sp_oth&apos;).is(&apos;:checked&apos;))&#10;	{&#10;		$(&apos;#DISPOSE_PERCENT&apos;).css(&apos;display&apos;, &apos;block&apos;);&#10;	}&#10;	else&#10;	{&#10;		$(&apos;#DISPOSE_PERCENT&apos;).css(&apos;display&apos;, &apos;none&apos;);&#10;	}&#10;}">
+                        <RadioButton id="rollover_yes">
+                            <InputLabel id="Il4" label_on="right">
+                                <Blurb id="Bb8">Yes</Blurb>
+                            </InputLabel>
+                            <InputField id="Id4" type="radio" default_mapping="tds.PRWS_ELECT_Y_1"
+                            value_calc="return interview.taxreturn.get().PRWS_ELECT_Y1.val()==1"
+                                store_calc="if formlet.has_key(&quot;rollover&quot;):&#10;	if formlet.rollover.str() == &quot;rollover_yes&quot;:&#10;		interview.taxreturn.get().PRWS_ELECT_Y1.set(1)&#10;		interview.taxreturn.get().PRWS_ELECT_N1.set(0)&#10;	elif formlet.rollover.str() == &quot;rollover_no&quot;:&#10;		interview.taxreturn.get().PRWS_ELECT_Y1.set(0)&#10;		interview.taxreturn.get().PRWS_ELECT_N1.set(1)&#10;	else:&#10;		interview.taxreturn.get().PRWS_ELECT_Y1.set(0)&#10;		interview.taxreturn.get().PRWS_ELECT_N1.set(0)&#10;else:&#10;	interview.taxreturn.get().PRWS_ELECT_Y1.set(0)&#10;	interview.taxreturn.get().PRWS_ELECT_N1.set(0)"/>
+                        </RadioButton>
+                        <RadioButton id="rollover_no">
+                            <InputLabel id="Il5" label_on="right">
+                                <Blurb id="Bb9">No</Blurb>
+                            </InputLabel>
+                            <InputField id="Id5" type="radio" default_mapping="tds.PRWS_ELECT_N_1"
+                            value_calc="return interview.taxreturn.get().PRWS_ELECT_N1.val()==1"
+                                store_calc="if formlet.has_key(&quot;rollover&quot;):&#10;	if formlet.rollover.str() == &quot;rollover_yes&quot;:&#10;		interview.taxreturn.get().PRWS_ELECT_Y1.set(1)&#10;		interview.taxreturn.get().PRWS_ELECT_N1.set(0)&#10;	elif formlet.rollover.str() == &quot;rollover_no&quot;:&#10;		interview.taxreturn.get().PRWS_ELECT_Y1.set(0)&#10;		interview.taxreturn.get().PRWS_ELECT_N1.set(1)&#10;	else:&#10;		interview.taxreturn.get().PRWS_ELECT_Y1.set(0)&#10;		interview.taxreturn.get().PRWS_ELECT_N1.set(0)&#10;else:&#10;	interview.taxreturn.get().PRWS_ELECT_Y1.set(0)&#10;	interview.taxreturn.get().PRWS_ELECT_N1.set(0)"/>
+                        </RadioButton>
+                    </RadioButtonsGroup>
+                </Input>
+            </Column>
+        </Row>
+        <Row id="Rw9" height="30">
+            <Column id="Cn9"></Column>
+        </Row>
+    </GroupLayout>
+    
+    <GroupLayout id="DISPOSE_PERCENT" style_calc="if interview.taxreturn.get() == taxp:&#10;	if tds.TAXP_PRWS_DISPOSE_SP_OTH_1.val() == 1 and taxp.PRWS_ELECT_N1.val() == 1:&#10;		return &quot;css-style|display:block&quot;&#10;elif is_dual() and interview.taxreturn.get() == sp:&#10;	if tds.SP_PRWS_DISPOSE_SP_OTH_1.val() == 1 and sp.PRWS_ELECT_N1.val() == 1:&#10;		return &quot;css-style|display:block&quot;&#10;&#10;return &quot;css-style|display:none&quot;">
+        <Row id="Rw10">
+            <Column id="Cn10" col_span="5">
+                <Note id="Ne4">
+                    <Blurb id="Bb10">
+                        How would you like to allocate 
+                        <Substitution id="Sn2" value_calc="return tax.get_taxpayer_name(interview.taxreturn.get())"/>'s 
+                        property? The percentage should total 100.
+                    </Blurb>
+                </Note>
+            </Column>
+        </Row>
+        <Row id="Rw11">
+            <Column id="Cn11">
+                <Note id="Ne5">
+                    <Blurb id="Bb11">
+                        % to Spouse
+                    </Blurb>
+                </Note>
+            </Column>
+            <Column id="Cn12">
+                <Input id="It3">
+                    <InputField id="sp_perc" type="percentage" default_mapping="interview.taxreturn.get().PRWS_SP_PERC1"
+                     validate_calc="if not (formlet.has_key(&quot;dispose&quot;) and formlet.dispose.str()==&quot;dispose_sp_oth&quot; and formlet.has_key(&quot;rollover&quot;) and formlet.rollover.str()==&quot;rollover_no&quot;):&#10;	return 1&#10;total = 0&#10;if formlet.has_key(&quot;sp_perc&quot;) and formlet.sp_perc.str()!=&quot;&quot;:&#10;	if not is_numeric(formlet.sp_perc.str()):&#10;		return 0&#10;	total = total +float(formlet.sp_perc.str())&#10;if formlet.has_key(&quot;sp_oth&quot;) and formlet.sp_oth.str()!=&quot;&quot;:&#10;	if not is_numeric(formlet.sp_oth.str()):&#10;		return 0&#10;	total = total + float(formlet.sp_oth.str())&#10;&#10;if total == 100:&#10;	return 1&#10;else:&#10;	return 0">
+                        <ErrorMessage id="Ee1">The total percentage of spouse and other should be 100.</ErrorMessage>
+                    </InputField>
+                </Input>
+            </Column>
+            <Column id="Cn13" width="50"></Column>
+            <Column id="Cn14">
+                <Note id="Ne6">
+                    <Blurb id="Bb12">
+                        % to Other
+                    </Blurb>
+                </Note>
+            </Column>
+            <Column id="Cn15">
+                <Input id="It4">
+                    <InputField id="sp_oth" type="percentage" default_mapping="tds.PRWS_OTH_PERC1"
+                     value_calc="if interview.taxreturn.get() == taxp:&#10;	return tds.TAXP_PRWS_OTH_PERC1.str()&#10;elif is_dual() and interview.taxreturn.get() == sp:&#10;	return tds.SP_PRWS_OTH_PERC1.str()&#10;	"
+                        store_calc="if formlet.has_key(&quot;sp_oth&quot;):&#10;	if interview.taxreturn.get() == taxp:&#10;		tds.TAXP_PRWS_OTH_PERC1.set(formlet.sp_oth.str())&#10;	elif is_dual() and interview.taxreturn.get() == sp:&#10;		tds.SP_PRWS_OTH_PERC1.set(formlet.sp_oth.str())&#10;	"
+                         validate_calc="if not (formlet.has_key(&quot;dispose&quot;) and formlet.dispose.str()==&quot;dispose_sp_oth&quot; and formlet.has_key(&quot;rollover&quot;) and formlet.rollover.str()==&quot;rollover_no&quot;):&#10;	return 1&#10;total = 0&#10;if formlet.has_key(&quot;sp_perc&quot;) and formlet.sp_perc.str()!=&quot;&quot;:&#10;	if not is_numeric(formlet.sp_perc.str()):&#10;		return 0&#10;	total = total +float(formlet.sp_perc.str())&#10;if formlet.has_key(&quot;sp_oth&quot;) and formlet.sp_oth.str()!=&quot;&quot;:&#10;	if not is_numeric(formlet.sp_oth.str()):&#10;		return 0&#10;	total = total + float(formlet.sp_oth.str())&#10;&#10;if total == 100:&#10;	return 1&#10;else:&#10;	return 0">
+                        <ErrorMessage id="Ee2">The total percentage of spouse and other should be 100.</ErrorMessage>
+                    </InputField>
+                </Input>
+            </Column>
+        </Row>
+    </GroupLayout>
+    
+    
+    <Button id="Bn1" target="back">
+        <Blurb id="Bb13">Back</Blurb>
+    </Button>
+    
+    <Button id="Bn2" target_calc="if interview.taxreturn.get()==taxp:&#10;    return &quot;interview|i_pr_designation(taxreturn=taxp,instance=0,isVal=0)&quot;&#10;elif is_dual() and interview.taxreturn.get()==sp:&#10;    return &quot;interview|i_pr_designation(taxreturn=sp,instance=0,isVal=0)&quot;"
+     rebound_calc="if interviewState.curReturn.str() == &quot;summary&quot;:&#10;	return &quot;return|summary&quot;&#10;else:&#10;	return &quot;return|&quot;">
+        <Blurb id="Bb14">Continue</Blurb>
+    </Button>
+    
+</Step>

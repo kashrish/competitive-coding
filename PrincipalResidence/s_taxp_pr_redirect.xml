@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE Step SYSTEM "http://qtdev.ca.intuit.com/dtd/Step.dtd">
+
+<Step id="s_taxp_pr_redirect" entry_calc="tds.taxp_pr_instance.set(0)" restore_redirect_calc="if (tds.TAXP_ADD_PROP.val() == 1):&#10;    return &quot;interview|i_principal_residence(taxreturn=taxp)&quot;&#10;else:&#10;    return &quot;step|s_sp_pr_redirect&quot;"
+    redirect_calc="if (tds.TAXP_ADD_PROP.val() == 1):&#10;    return &quot;interview|i_principal_residence(taxreturn=taxp)&quot;&#10;else:&#10;    return &quot;step|s_sp_pr_redirect&quot;"
+    rebound_calc="if interviewState.curReturn.str() == &quot;summary&quot;:&#10;    return &quot;step|s_pr_summary&quot;&#10;else:&#10;    return &quot;step|s_sp_pr_redirect&quot;">
+    
+    
+    <Title id="Te167797">
+        
+        <Blurb id="Bb167798"/>
+        
+    </Title>
+    
+    <Note id="Ne167799">
+        
+        <Blurb id="Bb167800">This step redirects the user  to </Blurb>
+        
+    </Note>
+    
+    <Button id="Bn167801" target="return|">
+        
+        <Blurb id="Bb167802">Continue</Blurb>
+        
+    </Button>
+    
+</Step>
+
